@@ -4,6 +4,8 @@ export default class Instrucciones extends Phaser.Scene {
     }
 
     init(){}
-    create(){}
+    create(){
+      this.add.text(400, 300, "instrucciones");
+    }
     upload(){}
 }

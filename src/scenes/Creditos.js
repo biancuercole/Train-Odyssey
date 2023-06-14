@@ -4,6 +4,8 @@ export default class Creditos extends Phaser.Scene {
     }
 
     init(){}
-    create(){}
+    create(){
+      this.add.text(400, 300, "creditos");
+    }
     upload(){}
 }

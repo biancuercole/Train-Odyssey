@@ -4,6 +4,8 @@ export default class Nivel1 extends Phaser.Scene {
     }
 
     init(){}
-    create(){}
+    create(){
+      this.add.text(400,300, "nivel1")
+    }
     upload(){}
 }
