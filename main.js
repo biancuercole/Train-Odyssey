@@ -1,12 +1,12 @@
-import Creditos from "./assets/scenes/Creditos.js";
-import Precargas from "./assets/scenes/Precargas.js";
-import Preload from "./assets/scenes/Preload.js";
-import Derrota from "./assets/scenes/Derrota.js";
-import Instrucciones from "./assets/scenes/Instrucciones.js";
-import Menu from "./assets/scenes/Menu.js";
-import Nivel1 from "./assets/scenes/Nivel1.js";
-import VictoriaJuego from "./assets/scenes/VictoriaJuego.js";
-import VictoriaNivel from "./assets/scenes/VictoriaNivel.js";
+import Creditos from "./src/scenes/Creditos.js";
+import Precargas from "./src/scenes/Precargas.js";
+import Preload from "./src/scenes/Preload.js";
+import Derrota from "./src/scenes/Derrota.js";
+import Instrucciones from "./src/scenes/Instrucciones.js";
+import Menu from "./src/scenes/Menu.js";
+import Nivel1 from "./src/scenes/Nivel1.js";
+import VictoriaJuego from "./src/scenes/VictoriaJuego.js";
+import VictoriaNivel from "./src/scenes/VictoriaNivel.js";
 
 // Create a new Phaser config object
 const config = {
