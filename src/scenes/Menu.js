@@ -5,7 +5,7 @@ export default class Menu extends Phaser.Scene {
 
     init(){}
     create(){
-      this.add.image(400,300, "fondoMenu").setScale(0.24);
+      this.add.image(400,300, "fondo");
       this.add.image(400, 300, "trenMenu").setScale(0.24);
       this.add.image(600, 150, "nombreMenu").setScale(0.24);
       const jugarMenu = this.add.image(600, 325, "jugarMenu1").setScale(0.24).setInteractive();
