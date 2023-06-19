@@ -18,7 +18,7 @@ export default class Nivel1 extends Phaser.Scene {
       fondo.tilePositionX += velocidadDesplazamiento;
       }
     };
-    this.tren = this.add.sprite(1000, 400, 'trenSheet');
+    this.tren = this.physics.add.sprite(1000, 400, 'trenSheet');
     this.anims.create({
       key: 'right',
       frames: this.anims.generateFrameNumbers('playerSheet', { start: 0, end: 3 }),
