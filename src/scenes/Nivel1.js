@@ -3,35 +3,42 @@ export default class Nivel1 extends Phaser.Scene {
     super("nivel1");
   }
 
-  create() {
+  init() {
+    this.velocidadDesplazamiento = 2;
+    this.isTeclaDerechaActiva = false;
+  }
 
+  create() {
     const width = 2000;
     const height = 600;
     this.cursors = this.input.keyboard.createCursorKeys();
-  
 
-    const fondo = this.add.tileSprite(0, 0, width, height, 'nivel1');
-    fondo.setOrigin(0, 0);
-    const velocidadDesplazamiento = 2;
-    this.update = () => {
-      if (this.cursors.right.isDown) {
-      fondo.tilePositionX += velocidadDesplazamiento;
-      }
-    };
-    this.tren = this.physics.add.sprite(1000, 400, 'trenSheet');
+    this.fondo = this.add.tileSprite(0, 0, width, height, 'nivel1');
+    this.fondo.setOrigin(0, 0);
+    this.tren = this.physics.add.sprite(1000, 300, 'trenSheet');
+    this.tren.body.allowGravity = false;
     this.anims.create({
       key: 'right',
-      frames: this.anims.generateFrameNumbers('playerSheet', { start: 0, end: 3 }),
-      frameRate: 10,
+      frames: this.anims.generateFrameNumbers('trenSheet', { start: 0, end: 3 }),
+      frameRate: 4,
       repeat: -1
     });
     this.add.text(400, 300, "nivel1");
+
+    this.input.keyboard.on('keydown-RIGHT', () => {
+      this.isTeclaDerechaActiva = true;
+    });
+
+    this.input.keyboard.on('keyup-RIGHT', () => {
+      this.isTeclaDerechaActiva = false;
+      this.tren.anims.stop('right');
+    });
   }
 
   update() {
-      if (this.input.keyboard.isDown(Phaser.Input.Keyboard.KeyCodes.RIGHT)) {
-          this.player.anims.play('right', true);
-      }
+    if (this.isTeclaDerechaActiva) {
+      this.tren.anims.play('right', true);
+      this.fondo.tilePositionX += this.velocidadDesplazamiento;
+    }
   }
 }
-
