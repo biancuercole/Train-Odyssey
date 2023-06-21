@@ -32,17 +32,17 @@ export default class Nivel1 extends Phaser.Scene {
     this.tren.body.allowGravity = false;
 
     this.time.addEvent ({
-      delay: 1000, //cada cuanto ocurre el evento
+      delay: 3000, //cada cuanto ocurre el evento
       callback: this.agregarMoneda, //es la funcion que se ejecuta cuando ocurre este evento
       callbackScope: this,
       loop: true,
     }); 
+    this.grupoMoneda = this.physics.add.group({allowGravity: false});
   }
 
   update() {
     if (this.cursors.right.isDown) {
       //inicia la animacion del tren 
-      this.agregarMoneda = true;
       this.tren.anims.play('right', true);
       //inicia movimiento de background y parallax
       this.fondo.tilePositionX += this.velocidadBackground;
@@ -54,7 +54,19 @@ export default class Nivel1 extends Phaser.Scene {
   }
 
   agregarMoneda() {
-    this.grupoMoneda = this.physics.add.sprite(800, 200, "moneda");
-    this.grupoMoneda.setVelocityX(-100)
+    let moneda = this.grupoMoneda.create(832, 200, "moneda");
+    this.tweens.add({
+      targets: moneda, /*El target que se le aplica el tweens */
+      x: -32, /*el X donde finaliza su desplazamiento*/
+      ease: "Sine.easeIn",
+      duration: 4000, /*Tiempo q tarda en realizar el desplazamiento */
+      yoyo: false, /*Desactivamos el yoyo y le decimos q no se repita. */
+      repeat: 0,
+      onComplete: ()=>{
+        //Aprovechando los diferentes eventos del tweens: 
+        //Cuando se complete el tweens, se destruye.
+        moneda.destroy();
+      }
+    });
   }
 }
