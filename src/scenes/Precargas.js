@@ -16,7 +16,6 @@ export default class Precargas extends Phaser.Scene {
       this.load.image("ayudaMenu2", "./public/images/Menu/ayudaMenu2.png");
       this.load.image("background", "./public/images/nivel.png");
       this.load.image("parallax", "./public/images/parallax.png");
-      this.load.image("tren", "./public/images/tren.png");
       this.load.image("obstaculo1", "./public/images/obstaculo1.png");
       this.load.image("obstaculo2", "./public/images/obstaculo2.png");
       this.load.image("obstaculo3", "./public/images/obstaculo3.png");

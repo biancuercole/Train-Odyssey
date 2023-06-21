@@ -13,7 +13,7 @@ export default class Nivel1 extends Phaser.Scene {
     //valores para fondo
     const width = 2000;
     const height = 600;
-    //inicializar input de teclado
+
     this.cursors = this.input.keyboard.createCursorKeys();
     //agregar fondo y parallax
     this.fondo = this.add.tileSprite(0, 0, width, height, 'background');
@@ -22,19 +22,27 @@ export default class Nivel1 extends Phaser.Scene {
     this.parallax.setOrigin(0, 0);
     //agregar interfaz
     this.add.image(1000, 300, "interfaz");
-    this.add.image(1005, 300, "moneda");
+    this.add.image(20, 20, "moneda");
     this.add.image(1300, 300, "vidas");
     this.add.image(1605, 300, "distancia");
-    this.add.image(1000, 300, "obstaculo3");
-    this.add.image(950, 300, "pinza");
+
+    this.add.image(950, 295, "pinza");
     //agregar sprite de tren y sacar gravedad
     this.tren = this.physics.add.sprite(950, 300, 'trenSheet');
     this.tren.body.allowGravity = false;
+
+    this.time.addEvent ({
+      delay: 1000, //cada cuanto ocurre el evento
+      callback: this.agregarMoneda, //es la funcion que se ejecuta cuando ocurre este evento
+      callbackScope: this,
+      loop: true,
+    }); 
   }
 
   update() {
     if (this.cursors.right.isDown) {
       //inicia la animacion del tren 
+      this.agregarMoneda = true;
       this.tren.anims.play('right', true);
       //inicia movimiento de background y parallax
       this.fondo.tilePositionX += this.velocidadBackground;
@@ -43,5 +51,10 @@ export default class Nivel1 extends Phaser.Scene {
       //frena animación de tren
       this.tren.anims.stop('right');
     }
+  }
+
+  agregarMoneda() {
+    this.grupoMoneda = this.physics.add.sprite(800, 200, "moneda");
+    this.grupoMoneda.setVelocityX(-100)
   }
 }
