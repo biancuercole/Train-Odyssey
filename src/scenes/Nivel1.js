@@ -20,8 +20,15 @@ export default class Nivel1 extends Phaser.Scene {
     this.fondo.setOrigin(0, 0);
     this.parallax = this.add.tileSprite(0, 0, width, height, "parallax");
     this.parallax.setOrigin(0, 0);
+    //agregar interfaz
+    this.add.image(1000, 300, "interfaz");
+    this.add.image(1005, 300, "moneda");
+    this.add.image(1300, 300, "vidas");
+    this.add.image(1605, 300, "distancia");
+    this.add.image(1000, 300, "obstaculo3");
+    this.add.image(950, 300, "pinza");
     //agregar sprite de tren y sacar gravedad
-    this.tren = this.physics.add.sprite(1000, 300, 'trenSheet');
+    this.tren = this.physics.add.sprite(950, 300, 'trenSheet');
     this.tren.body.allowGravity = false;
   }
 

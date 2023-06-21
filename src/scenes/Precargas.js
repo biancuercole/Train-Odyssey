@@ -24,6 +24,7 @@ export default class Precargas extends Phaser.Scene {
       this.load.image("vidas", "./public/images/vidas.png");
       this.load.image("moneda", "./public/images/moneda.png");
       this.load.image("distancia", "./public/images/distancia.png");
+      this.load.image("pinza", "./public/images/pinza.png");
 
       this.load.spritesheet("trenSheet", "./public/images/trenSheet.png", {
         frameWidth: 2000, 
