@@ -6,7 +6,7 @@ export default class Nivel1 extends Phaser.Scene {
   init() {
     this.velocidadBackground = 0.5;
     this.velocidadParallax = 2;
-    this.contadorMonedas = 0
+    this.contadorMonedas = 0;
   }
 
   create() {
@@ -55,18 +55,17 @@ export default class Nivel1 extends Phaser.Scene {
       this.fondo.tilePositionX += this.velocidadBackground;
       this.parallax.tilePositionX += this.velocidadParallax;
       this.grupoMoneda.setVelocityX(-100);
-
     } else if (this.cursors.right.isUp){
       //frena animación de tren
       this.tren.anims.stop('right');
       this.grupoMoneda.setVelocityX(-0);
     }    
+
     const limiteSuperior = 320;
     const limiteInferior = 420;
     const pinzaY = this.pinza.y;
     const isPinzaEnLimiteSuperior = pinzaY <= limiteSuperior;
     const isPinzaEnLimiteInferior = pinzaY >= limiteInferior;
-
     if (isPinzaEnLimiteSuperior) {
       this.pinza.y = limiteSuperior;
       this.pinza.setVelocityY(0);
@@ -74,7 +73,6 @@ export default class Nivel1 extends Phaser.Scene {
       this.pinza.y = limiteInferior;
       this.pinza.setVelocityY(0);
     }
-
     if (this.cursors.space.isDown) {
       if (isPinzaEnLimiteInferior || !this.isPinzaEnMovimiento) {
         this.pinza.setVelocityY(-100);
@@ -96,8 +94,9 @@ export default class Nivel1 extends Phaser.Scene {
 
 
   colectarMoneda(moneda, pinza) {
+    this.contadorMonedas += 50;
     pinza.disableBody(true, true);
-    console.log("Prueba")
+    console.log(this.contadorMonedas)
   }
 }
 
