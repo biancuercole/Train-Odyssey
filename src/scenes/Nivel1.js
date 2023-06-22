@@ -7,6 +7,8 @@ export default class Nivel1 extends Phaser.Scene {
     this.velocidadBackground = 0.5;
     this.velocidadParallax = 2;
     this.contadorMonedas = 0;
+    this.contadorKm = 0;
+    this.contadorVidas = 3;
   }
 
   create() {
@@ -33,7 +35,7 @@ export default class Nivel1 extends Phaser.Scene {
     //monedas 
     this.grupoMoneda = this.physics.add.group({allowGravity: false});
     this.time.addEvent ({
-    delay: 1000,
+    delay: 7000,
     callback: this.agregarMoneda, 
     callbackScope: this,
     loop: true,
@@ -45,7 +47,27 @@ export default class Nivel1 extends Phaser.Scene {
 
     this.cursors = this.input.keyboard.createCursorKeys();
     this.physics.add.overlap(this.pinza, this.grupoMoneda, this.colectarMoneda, null, this);
-    this.textoMoneda = this.add.text(40, 7, "0", {
+
+    //contadorKm
+    this.time.addEvent ({
+      delay: 9000,
+      callback: this.kilometros,
+      callbackScope: this,
+      loop: true,
+    })
+
+    //Textos 
+    this.textoMoneda = this.add.text(40, 7, this.contadorMonedas, {
+      fontSize: "20px",
+      fill: "#FFFFFF",
+      fontFamily: "verdana",
+    });
+    this.textoKm = this.add.text(707, 7, this.contadorKm, {
+      fontSize: "20px",
+      fill: "#FFFFFF",
+      fontFamily: "verdana",
+    })
+    this.textoVidas = this.add.text(372, 7, this.contadorVidas, {
       fontSize: "20px",
       fill: "#FFFFFF",
       fontFamily: "verdana",
@@ -80,13 +102,17 @@ export default class Nivel1 extends Phaser.Scene {
     }
     if (this.cursors.space.isDown) {
       if (isPinzaEnLimiteInferior || !this.isPinzaEnMovimiento) {
-        this.pinza.setVelocityY(-100);
+        this.pinza.setVelocityY(-150);
         this.isPinzaEnMovimiento = true;
         this.pinza.body.allowGravity = false;
       }
     } else if (this.cursors.space.isUp) {
       this.isPinzaEnMovimiento = false;
       this.pinza.body.allowGravity = true;
+    }
+
+    if (this.contadorKm == 500) {
+      console.log("transición")
     }
   }
 
@@ -97,6 +123,12 @@ export default class Nivel1 extends Phaser.Scene {
     this.physics.add.overlap(this.pinza, this.moneda, this.colectarMoneda, null, this);
   }
 
+  kilometros() {
+    if(this.cursors.right.isDown) {
+    this.contadorKm += 50
+    this.textoKm.setText(this.contadorKm)
+    }
+  }
 
   colectarMoneda(moneda, pinza) {
     this.contadorMonedas += 50;
