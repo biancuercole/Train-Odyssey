@@ -45,6 +45,11 @@ export default class Nivel1 extends Phaser.Scene {
 
     this.cursors = this.input.keyboard.createCursorKeys();
     this.physics.add.overlap(this.pinza, this.grupoMoneda, this.colectarMoneda, null, this);
+    this.textoMoneda = this.add.text(40, 7, "0", {
+      fontSize: "20px",
+      fill: "#FFFFFF",
+      fontFamily: "verdana",
+    });
   }
 
   update() {
@@ -96,7 +101,8 @@ export default class Nivel1 extends Phaser.Scene {
   colectarMoneda(moneda, pinza) {
     this.contadorMonedas += 50;
     pinza.disableBody(true, true);
-    console.log(this.contadorMonedas)
+    console.log(this.contadorMonedas);
+    this.textoMoneda.setText(this.contadorMonedas)
   }
 }
 
