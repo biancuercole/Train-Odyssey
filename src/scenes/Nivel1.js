@@ -25,19 +25,21 @@ export default class Nivel1 extends Phaser.Scene {
     this.add.image(1300, 300, "vidas");
     this.add.image(1605, 300, "distancia");
 
-    this.add.image(950, 295, "pinza");
+    this.grupoMoneda = this.physics.add.group({allowGravity: false});
+    this.pinza = this.physics.add.sprite(950, 295, "pinza");
+    this.pinza.body.allowGravity = false;
     //agregar sprite de tren y sacar gravedad
     this.tren = this.physics.add.sprite(950, 300, 'trenSheet');
     this.tren.body.allowGravity = false;
 
     this.time.addEvent ({
-    delay: 15000, //cada cuanto ocurre el event
-    callback: this.agregarMoneda, //es la funcion que se ejecuta cuando ocurre este evento
+    delay: 15000,
+    callback: this.agregarMoneda, 
     callbackScope: this,
     loop: true,
-      });  
+    });  
 
-    this.grupoMoneda = this.physics.add.group({allowGravity: false});
+
   }
 
   update() {
@@ -48,16 +50,41 @@ export default class Nivel1 extends Phaser.Scene {
       this.fondo.tilePositionX += this.velocidadBackground;
       this.parallax.tilePositionX += this.velocidadParallax;
       this.grupoMoneda.setVelocityX(-100);
-    } else {
+
+    } else if (this.cursors.right.isUp){
       //frena animación de tren
       this.tren.anims.stop('right');
       this.grupoMoneda.setVelocityX(-0);
+    }    
+    const limiteSuperior = 200;
+    const limiteInferior = 295;
+    const pinzaY = this.pinza.y;
+    const isPinzaEnLimiteSuperior = pinzaY <= limiteSuperior;
+    const isPinzaEnLimiteInferior = pinzaY >= limiteInferior;
+
+    if (isPinzaEnLimiteSuperior) {
+      this.pinza.y = limiteSuperior;
+      this.pinza.setVelocityY(0);
+    } else if (isPinzaEnLimiteInferior) {
+      this.pinza.y = limiteInferior;
+      this.pinza.setVelocityY(0);
+    }
+
+    if (this.cursors.space.isDown) {
+      if (isPinzaEnLimiteInferior || !this.isPinzaEnMovimiento) {
+        this.pinza.setVelocityY(-100);
+        this.isPinzaEnMovimiento = true;
+        this.pinza.body.allowGravity = false;
+      }
+    } else if (this.cursors.space.isUp) {
+      this.isPinzaEnMovimiento = false;
+      this.pinza.body.allowGravity = true;
     }
   }
 
   agregarMoneda() {
     if(this.cursors.right.isDown) {
-    let moneda = this.grupoMoneda.create(800, 200, "moneda");
+    let moneda = this.grupoMoneda.create(800, 300, "moneda");
     } 
   }
 }
