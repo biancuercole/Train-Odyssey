@@ -112,7 +112,11 @@ export default class Nivel1 extends Phaser.Scene {
     }
 
     if (this.contadorKm == 200) {
-      this.scene.start("transicion")
+      this.scene.start("transicion", {
+        contadorMonedas: this.contadorMonedas,
+        contadorKm: this.contadorKm,
+        contadorVidas: this.contadorVidas,
+      })
     }
   }
 

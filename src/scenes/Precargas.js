@@ -38,7 +38,7 @@ export default class Precargas extends Phaser.Scene {
         frameRate: 4,
         repeat: -1
       });
-      this.scene.start("parte2");
+      this.scene.start("menu");
       
     }
     upload(){}

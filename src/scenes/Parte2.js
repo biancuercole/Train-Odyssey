@@ -3,10 +3,10 @@ export default class Parte2 extends Phaser.Scene {
       super("parte2");
     }
   
-    init() {
-      this.contadorMonedas = 0;
-      this.contadorKm = 0;
-      this.contadorVidas = 3;
+    init(data) {
+      this.contadorMonedas = data.contadorMonedas||0;
+      this.contadorKm = data.contadorKm||0;
+      this.contadorVidas = data.contadorVidas||0;
     }
   
     create() {
