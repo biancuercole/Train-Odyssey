@@ -111,8 +111,8 @@ export default class Nivel1 extends Phaser.Scene {
       this.pinza.body.allowGravity = true;
     }
 
-    if (this.contadorKm == 500) {
-      console.log("transición")
+    if (this.contadorKm == 200) {
+      this.scene.start("transicion")
     }
   }
 

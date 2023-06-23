@@ -24,6 +24,7 @@ export default class Precargas extends Phaser.Scene {
       this.load.image("moneda", "./public/images/moneda.png");
       this.load.image("distancia", "./public/images/distancia.png");
       this.load.image("pinza", "./public/images/pinza.png");
+      this.load.image("transicion", "./public/images/tituloTransicion.png");
 
       this.load.spritesheet("trenSheet", "./public/images/trenSheet.png", {
         frameWidth: 2000, 
@@ -37,7 +38,7 @@ export default class Precargas extends Phaser.Scene {
         frameRate: 4,
         repeat: -1
       });
-      this.scene.start("nivel1");
+      this.scene.start("parte2");
       
     }
     upload(){}
