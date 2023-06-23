@@ -2,8 +2,6 @@ export default class Menu extends Phaser.Scene {
     constructor() {
       super("menu");
     }
-
-    init(){}
     create(){
       this.add.image(400,300, "fondo");
       this.add.image(400, 300, "trenMenu").setScale(0.24);
@@ -11,7 +9,7 @@ export default class Menu extends Phaser.Scene {
       const jugarMenu = this.add.image(600, 325, "jugarMenu1").setScale(0.24).setInteractive();
       const creditosMenu = this.add.image(600, 430, "creditosMenu1").setScale(0.24).setInteractive();
       const ayudaMenu = this.add.image(600, 480, "ayudaMenu1").setScale(0.24).setInteractive();
-
+      //boton jugar 
       jugarMenu.on("pointerover", () => {
         this.game.canvas.style.cursor = "pointer";
         jugarMenu.setTexture("jugarMenu2");
@@ -25,7 +23,7 @@ export default class Menu extends Phaser.Scene {
         jugarMenu.setTexture("jugarMenu2");
         this.scene.start("nivel1");
       });
-
+      //boton creditos
       creditosMenu.on("pointerover", () => {
         this.game.canvas.style.cursor = "pointer";
         creditosMenu.setTexture("creditosMenu2");
@@ -39,7 +37,7 @@ export default class Menu extends Phaser.Scene {
         creditosMenu.setTexture("creditosMenu2");
         this.scene.start("creditos");
       });
-
+      //boton ayuda
       ayudaMenu.on("pointerover", () => {
         this.game.canvas.style.cursor = "pointer";
         ayudaMenu.setTexture("ayudaMenu2");
@@ -53,7 +51,5 @@ export default class Menu extends Phaser.Scene {
         ayudaMenu.setTexture("ayudaMenu2");
         this.scene.start("instrucciones");
       });
-
     }
-    upload(){}
 }

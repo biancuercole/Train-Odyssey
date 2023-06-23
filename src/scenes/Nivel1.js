@@ -12,8 +12,6 @@ export default class Nivel1 extends Phaser.Scene {
   }
 
   create() {
-    
-
     //agregar fondo y parallax
     const width = 2000;
     const height = 600;
@@ -21,17 +19,14 @@ export default class Nivel1 extends Phaser.Scene {
     this.fondo.setOrigin(0, 0);
     this.parallax = this.add.tileSprite(0, 0, width, height, "parallax");
     this.parallax.setOrigin(0, 0);
-
     //agregar interfaz
     this.add.image(1000, 300, "interfaz");
     this.add.image(20, 20, "moneda");
     this.add.image(1300, 300, "vidas");
     this.add.image(1605, 300, "distancia");
-
     //pinza
     this.pinza = this.physics.add.sprite(432, 450, "pinza");
     this.pinza.body.allowGravity = false;
-
     //monedas 
     this.grupoMoneda = this.physics.add.group({allowGravity: false});
     this.time.addEvent ({
@@ -40,14 +35,9 @@ export default class Nivel1 extends Phaser.Scene {
     callbackScope: this,
     loop: true,
     });  
-    
     //agregar sprite de tren y sacar gravedad
     this.tren = this.physics.add.sprite(950, 300, 'trenSheet');
     this.tren.body.allowGravity = false;
-
-    this.cursors = this.input.keyboard.createCursorKeys();
-    this.physics.add.overlap(this.pinza, this.grupoMoneda, this.colectarMoneda, null, this);
-
     //contadorKm
     this.time.addEvent ({
       delay: 9000,
@@ -55,7 +45,6 @@ export default class Nivel1 extends Phaser.Scene {
       callbackScope: this,
       loop: true,
     })
-
     //Textos 
     this.textoMoneda = this.add.text(40, 7, this.contadorMonedas, {
       fontSize: "20px",
@@ -71,7 +60,10 @@ export default class Nivel1 extends Phaser.Scene {
       fontSize: "20px",
       fill: "#FFFFFF",
       fontFamily: "verdana",
-    });
+    });    
+    
+    this.cursors = this.input.keyboard.createCursorKeys();
+    this.physics.add.overlap(this.pinza, this.grupoMoneda, this.colectarMoneda, null, this);
   }
 
   update() {
@@ -81,18 +73,22 @@ export default class Nivel1 extends Phaser.Scene {
       //inicia movimiento de background y parallax
       this.fondo.tilePositionX += this.velocidadBackground;
       this.parallax.tilePositionX += this.velocidadParallax;
+      //velocidad monedas 
       this.grupoMoneda.setVelocityX(-100);
     } else if (this.cursors.right.isUp){
       //frena animación de tren
       this.tren.anims.stop('right');
+      //frena movimiento monedas
       this.grupoMoneda.setVelocityX(-0);
     }    
 
     const limiteSuperior = 320;
     const limiteInferior = 420;
+    //detecta posicion de pinza en y
     const pinzaY = this.pinza.y;
     const isPinzaEnLimiteSuperior = pinzaY <= limiteSuperior;
     const isPinzaEnLimiteInferior = pinzaY >= limiteInferior;
+    //frena el movimiento de pinza si llega a los limietes
     if (isPinzaEnLimiteSuperior) {
       this.pinza.y = limiteSuperior;
       this.pinza.setVelocityY(0);
@@ -100,19 +96,21 @@ export default class Nivel1 extends Phaser.Scene {
       this.pinza.y = limiteInferior;
       this.pinza.setVelocityY(0);
     }
+    //si la pinza esta en limite inferior y no se mueve, ahora se puede mover y no tiene gravedad
     if (this.cursors.space.isDown) {
       if (isPinzaEnLimiteInferior || !this.isPinzaEnMovimiento) {
         this.pinza.setVelocityY(-150);
         this.isPinzaEnMovimiento = true;
         this.pinza.body.allowGravity = false;
       }
+      //si espacio no se aprieta la pinza no se mueve y recupera gravedad 
     } else if (this.cursors.space.isUp) {
       this.isPinzaEnMovimiento = false;
       this.pinza.body.allowGravity = true;
     }
-
+    //cuando los km llegan al valor se pasa a la escena de transición para obstaculo
     if (this.contadorKm == 200) {
-      this.scene.start("transicion", {
+      this.scene.start("transicion", { //pasar valores a siguiente escena 
         contadorMonedas: this.contadorMonedas,
         contadorKm: this.contadorKm,
         contadorVidas: this.contadorVidas,
