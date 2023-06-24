@@ -1,6 +1,6 @@
-export default class Transicion extends Phaser.Scene {
+export default class Transicion2 extends Phaser.Scene {
     constructor() {
-      super("transicion");
+      super("transicion2");
     }
 
     init(data) { //inicia datoss de nivel 1
@@ -21,7 +21,7 @@ export default class Transicion extends Phaser.Scene {
     }
 
     parte2() {
-        this.scene.start("obstaculo1", { //pasa datos a parte 2 de nivel con obstaculo 
+        this.scene.start("nivel1", { //pasa datos a parte 2 de nivel con obstaculo 
             contadorMonedas: this.contadorMonedas, 
             contadorKm: this.contadorKm, 
             contadorVidas: this.contadorVidas, 

@@ -25,6 +25,12 @@ export default class Precargas extends Phaser.Scene {
       this.load.image("distancia", "./public/images/distancia.png");
       this.load.image("pinza", "./public/images/pinza.png");
       this.load.image("transicion", "./public/images/tituloTransicion.png");
+      this.load.image("textoCaja", "./public/images/textoCaja.png");
+      this.load.image("textoCaminos", "./public/images/textoCaminos.png");
+      this.load.image("textoTronco", "./public/images/textoTronco.png");
+      this.load.image("pregunta1", "./public/images/pregunta1.png");
+      this.load.image("correcto", "./public/images/correcto.png");
+      this.load.image("incorrecto", "./public/images/incorrecto.png");
 
       this.load.spritesheet("trenSheet", "./public/images/trenSheet.png", {
         frameWidth: 2000, 
@@ -38,7 +44,7 @@ export default class Precargas extends Phaser.Scene {
         frameRate: 4,
         repeat: -1
       });
-      this.scene.start("menu");
+      this.scene.start("obstaculo1");
       
     }
     upload(){}
