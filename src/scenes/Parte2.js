@@ -1,14 +1,14 @@
 export default class Parte2 extends Phaser.Scene {
     constructor() {
       super("parte2");
-    }
-  
-    init() {
       this.velocidadBackground = 0.5;
       this.velocidadParallax = 2;
-      this.contadorMonedas = 0;
-      this.contadorKm = 0;
-      this.contadorVidas = 3;
+    }
+  
+    init(data) {
+      this.contadorMonedas = data.contadorMonedas||0;
+      this.contadorKm = data.contadorKm||0;
+      this.contadorVidas = data.contadorVidas||3;
     }
   
     create() {
@@ -109,7 +109,7 @@ export default class Parte2 extends Phaser.Scene {
         this.pinza.body.allowGravity = true;
       }
       //cuando los km llegan al valor se pasa a la escena de transición para obstaculo
-      if (this.contadorKm == 200) {
+      if (this.contadorKm == 400) {
         this.scene.start("transicion", { //pasar valores a siguiente escena 
           contadorMonedas: this.contadorMonedas,
           contadorKm: this.contadorKm,
