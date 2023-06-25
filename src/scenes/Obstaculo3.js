@@ -10,7 +10,7 @@ export default class Obstaculo3 extends Phaser.Scene {
     init(data) {
       this.contadorMonedas = data.contadorMonedas || 0;
       this.contadorKm = data.contadorKm || 0;
-      this.contadorVidas = data.contadorVidas || 3;
+      this.contadorVidas = data.contadorVidas || 2;
     }
   
     create() {
@@ -27,8 +27,8 @@ export default class Obstaculo3 extends Phaser.Scene {
       this.add.image(20, 20, "moneda");
       this.add.image(1300, 300, "vidas");
       this.add.image(1605, 300, "distancia");
-      this.textoTronco = this.add.image(400, 230, "textoTronco").setScale(0.20);
-      this.add.image(980, 300, "obstaculo3");
+      this.textoTronco = this.add.image(400, 230, "textoCaja").setScale(0.20);
+      this.add.image(980, 300, "obstaculo2");
   
       // Pinza
       this.pinza = this.physics.add.sprite(432, 420, "pinza");
@@ -70,19 +70,32 @@ export default class Obstaculo3 extends Phaser.Scene {
       if (this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_ONE).isDown && this.contadorMonedas >= 200) {
         this.contadorMonedas -= 200;
         this.textoMoneda.setText(this.contadorMonedas);
-        this.scene.start("transicion4", {
+        this.scene.start("victoriajuego", {
           contadorMonedas: this.contadorMonedas,
           contadorKm: this.contadorKm,
           contadorVidas: this.contadorVidas,
         });
-      } else if (this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_ONE).isDown && this.contadorMonedas <= 200 && !this.teclaUno) {
+      } else if (this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_ONE).isDown && this.contadorMonedas <= 200 && !this.teclaUno && this.contadorVidas > 1) {
         this.teclaUno = true;
         this.textoTronco.setVisible(false);
         this.add.image(400, 200, "monedasInsuficientes").setScale(0.24);
         this.contadorVidas -= 1
         this.textoVidas.setText(this.contadorVidas);
         setTimeout(() => {
-          this.scene.start("transicion4", {
+          this.scene.start("victoriajuego", {
+          contadorMonedas: this.contadorMonedas,
+          contadorKm: this.contadorKm,
+          contadorVidas: this.contadorVidas,
+          })
+        }, 2000);
+      } else if (this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_ONE).isDown && this.contadorMonedas <= 200 && !this.teclaUno && this.contadorVidas == 1) {
+        this.teclaUno = true;
+        this.textoTronco.setVisible(false);
+        this.add.image(400, 200, "monedasInsuficientes").setScale(0.24);
+        this.contadorVidas -= 1
+        this.textoVidas.setText(this.contadorVidas);
+        setTimeout(() => {
+          this.scene.start("derrota", {
           contadorMonedas: this.contadorMonedas,
           contadorKm: this.contadorKm,
           contadorVidas: this.contadorVidas,
@@ -106,7 +119,7 @@ export default class Obstaculo3 extends Phaser.Scene {
         this.pregunta1.setVisible(false);
         this.add.image(400, 250, "correcto").setScale(0.24);
         setTimeout(() => {
-          this.scene.start("transicion4", {
+          this.scene.start("victoriajuego", {
           contadorMonedas: this.contadorMonedas,
           contadorKm: this.contadorKm,
           contadorVidas: this.contadorVidas,
@@ -117,7 +130,8 @@ export default class Obstaculo3 extends Phaser.Scene {
         if (
             this.isPreguntaActive &&
             this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.B).isDown &&
-            !this.isBKeyPressed // Verificar si la tecla "B" no ha sido presionada antes en este fotograma
+            !this.isBKeyPressed && // Verificar si la tecla "B" no ha sido presionada antes en este fotograma
+            this.contadorVidas > 1
           ){
             this.isBKeyPressed = true; // Marcar la tecla "B" como presionada
             this.pregunta1.setVisible(false);
@@ -125,14 +139,32 @@ export default class Obstaculo3 extends Phaser.Scene {
             this.contadorVidas -= 1;
             this.textoVidas.setText(this.contadorVidas);
             setTimeout(() => {
-              this.scene.start("transicion4", {
+              this.scene.start("victoriajuego", {
+                contadorMonedas: this.contadorMonedas,
+                contadorKm: this.contadorKm,
+                contadorVidas: this.contadorVidas,
+              });
+            }, 2000);
+          } else  if (
+            this.isPreguntaActive &&
+            this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.B).isDown &&
+            !this.isBKeyPressed && // Verificar si la tecla "B" no ha sido presionada antes en este fotograma
+            this.contadorVidas == 1
+          ){
+            this.isBKeyPressed = true; // Marcar la tecla "B" como presionada
+            this.pregunta1.setVisible(false);
+            this.add.image(400, 250, "incorrecto").setScale(0.24);
+            this.contadorVidas -= 1;
+            this.textoVidas.setText(this.contadorVidas);
+            setTimeout(() => {
+              this.scene.start("derrota", {
                 contadorMonedas: this.contadorMonedas,
                 contadorKm: this.contadorKm,
                 contadorVidas: this.contadorVidas,
               });
             }, 2000);
           }
-      
+       
           if (
             this.isPreguntaActive &&
             this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.B).isUp

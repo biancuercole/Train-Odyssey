@@ -4,6 +4,8 @@ export default class VictoriaJuego extends Phaser.Scene {
     }
 
     init(){}
-    create(){}
+    create(){
+      console.log("victoria")
+    }
     upload(){}
 }

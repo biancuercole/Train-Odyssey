@@ -4,6 +4,8 @@ export default class Derrota extends Phaser.Scene {
     }
 
     init(){}
-    create(){}
+    create(){
+      console.log("derrota")
+    }
     upload(){}
 }
