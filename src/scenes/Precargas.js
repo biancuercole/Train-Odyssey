@@ -29,6 +29,8 @@ export default class Precargas extends Phaser.Scene {
       this.load.image("textoCaminos", "./public/images/textoCaminos.png");
       this.load.image("textoTronco", "./public/images/textoTronco.png");
       this.load.image("pregunta1", "./public/images/pregunta1.png");
+      this.load.image("pregunta2", "./public/images/pregunta2.png");
+      this.load.image("pregunta3", "./public/images/pregunta3.png");
       this.load.image("correcto", "./public/images/correcto.png");
       this.load.image("incorrecto", "./public/images/incorrecto.png");
       this.load.image("monedasInsuficientes", "./public/images/monedasInsuficientes.png");
@@ -45,7 +47,7 @@ export default class Precargas extends Phaser.Scene {
         frameRate: 4,
         repeat: -1
       });
-      this.scene.start("menu");
+      this.scene.start("obstaculo2");
       
     }
     upload(){}

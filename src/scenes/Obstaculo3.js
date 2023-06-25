@@ -1,16 +1,16 @@
-export default class Obstaculo2 extends Phaser.Scene {
+export default class Obstaculo3 extends Phaser.Scene {
     constructor() {
-      super("obstaculo2");
+      super("obstaculo3");
       this.textoTronco = null;
       this.isPreguntaActive = false;
-      this.isAKeyPressed = false;
+      this.isBKeyPressed = false;
 
     }
   
     init(data) {
       this.contadorMonedas = data.contadorMonedas || 0;
       this.contadorKm = data.contadorKm || 0;
-      this.contadorVidas = data.contadorVidas || 0;
+      this.contadorVidas = data.contadorVidas || 3;
     }
   
     create() {
@@ -27,8 +27,8 @@ export default class Obstaculo2 extends Phaser.Scene {
       this.add.image(20, 20, "moneda");
       this.add.image(1300, 300, "vidas");
       this.add.image(1605, 300, "distancia");
-      this.textoTronco = this.add.image(400, 230, "textoCaminos").setScale(0.20);
-      this.add.image(980, 300, "obstaculo1");
+      this.textoTronco = this.add.image(400, 230, "textoTronco").setScale(0.20);
+      this.add.image(980, 300, "obstaculo3");
   
       // Pinza
       this.pinza = this.physics.add.sprite(432, 420, "pinza");
@@ -99,10 +99,10 @@ export default class Obstaculo2 extends Phaser.Scene {
       if (this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_TWO).isDown && !this.isPreguntaActive) {
         this.isPreguntaActive = true;
         this.textoTronco.setVisible(false);
-        this.pregunta1 = this.add.image(400, 250, "pregunta2").setScale(0.24);
+        this.pregunta1 = this.add.image(400, 250, "pregunta1").setScale(0.24);
       }
   
-      if (this.isPreguntaActive && this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.B).isDown) {
+      if (this.isPreguntaActive && this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A).isDown) {
         this.pregunta1.setVisible(false);
         this.add.image(400, 250, "correcto").setScale(0.24);
         setTimeout(() => {
@@ -114,8 +114,12 @@ export default class Obstaculo2 extends Phaser.Scene {
         }, 2000);
         }
         
-        if (this.isPreguntaActive && this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A).isDown && !this.isAKeyPressed ) {
-            this.isAKeyPressed = true; // Marcar la tecla "B" como presionada
+        if (
+            this.isPreguntaActive &&
+            this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.B).isDown &&
+            !this.isBKeyPressed // Verificar si la tecla "B" no ha sido presionada antes en este fotograma
+          ){
+            this.isBKeyPressed = true; // Marcar la tecla "B" como presionada
             this.pregunta1.setVisible(false);
             this.add.image(400, 250, "incorrecto").setScale(0.24);
             this.contadorVidas -= 1;
@@ -129,8 +133,11 @@ export default class Obstaculo2 extends Phaser.Scene {
             }, 2000);
           }
       
-          if (this.isPreguntaActive && this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A).isUp) {
-            this.isAKeyPressed = false; // Restablecer la variable cuando se suelta la tecla "B"
+          if (
+            this.isPreguntaActive &&
+            this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.B).isUp
+          ) {
+            this.isBKeyPressed = false; // Restablecer la variable cuando se suelta la tecla "B"
           }
     }
 }

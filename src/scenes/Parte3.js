@@ -109,7 +109,7 @@ export default class Parte3 extends Phaser.Scene {
         this.pinza.body.allowGravity = true;
       }
       //cuando los km llegan al valor se pasa a la escena de transición para obstaculo
-      if (this.contadorKm == 400) {
+      if (this.contadorKm == 600) {
         this.scene.start("transicion5", { //pasar valores a siguiente escena 
           contadorMonedas: this.contadorMonedas,
           contadorKm: this.contadorKm,

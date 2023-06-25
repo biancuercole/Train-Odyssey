@@ -15,6 +15,7 @@ import Transicion4 from "./src/scenes/Transicion4.js";
 import Transicion5 from "./src/scenes/Transicion5.js";
 import Obstaculo1 from "./src/scenes/Obstaculo1.js";
 import Obstaculo2 from "./src/scenes/Obstaculo2.js";
+import Obstaculo3 from "./src/scenes/Obstaculo3.js";
 
 // Create a new Phaser config object
 const config = {
@@ -43,7 +44,7 @@ const config = {
   // List of scenes to load
   // Only the first scene will be shown
   // Remember to import the scene before adding it to the list
-  scene: [Precargas, Preload, Creditos, Derrota, Instrucciones, Menu, Parte1, Transicion1, Transicion2, Transicion3, Transicion4, Transicion5, Obstaculo1, Obstaculo2, VictoriaJuego, Parte2, Parte3],
+  scene: [Precargas, Preload, Creditos, Derrota, Instrucciones, Menu, Parte1, Transicion1, Transicion2, Transicion3, Transicion4, Transicion5, Obstaculo1, Obstaculo2, Obstaculo3, VictoriaJuego, Parte2, Parte3],
 };
 
 // Create a new Phaser game instance

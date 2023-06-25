@@ -1,6 +1,6 @@
 export default class Parte1 extends Phaser.Scene {
   constructor() {
-    super("Parte1");
+    super("parte1");
   }
 
   init() {
