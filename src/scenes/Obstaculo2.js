@@ -70,7 +70,7 @@ export default class Obstaculo2 extends Phaser.Scene {
       if (this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_ONE).isDown && this.contadorMonedas >= 200) {
         this.contadorMonedas -= 200;
         this.textoMoneda.setText(this.contadorMonedas);
-        this.scene.start("transicion2", {
+        this.scene.start("transicion4", {
           contadorMonedas: this.contadorMonedas,
           contadorKm: this.contadorKm,
           contadorVidas: this.contadorVidas,
@@ -82,7 +82,7 @@ export default class Obstaculo2 extends Phaser.Scene {
         this.contadorVidas -= 1
         this.textoVidas.setText(this.contadorVidas);
         setTimeout(() => {
-          this.scene.start("transicion2", {
+          this.scene.start("transicion4", {
           contadorMonedas: this.contadorMonedas,
           contadorKm: this.contadorKm,
           contadorVidas: this.contadorVidas,
@@ -106,7 +106,7 @@ export default class Obstaculo2 extends Phaser.Scene {
         this.pregunta1.setVisible(false);
         this.add.image(400, 250, "correcto").setScale(0.24);
         setTimeout(() => {
-          this.scene.start("transicion2", {
+          this.scene.start("transicion4", {
           contadorMonedas: this.contadorMonedas,
           contadorKm: this.contadorKm,
           contadorVidas: this.contadorVidas,
@@ -125,7 +125,7 @@ export default class Obstaculo2 extends Phaser.Scene {
             this.contadorVidas -= 1;
             this.textoVidas.setText(this.contadorVidas);
             setTimeout(() => {
-              this.scene.start("transicion2", {
+              this.scene.start("transicion4", {
                 contadorMonedas: this.contadorMonedas,
                 contadorKm: this.contadorKm,
                 contadorVidas: this.contadorVidas,

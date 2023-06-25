@@ -21,7 +21,7 @@ export default class Menu extends Phaser.Scene {
       jugarMenu.on("pointerdown", () => {
         this.game.canvas.style.cursor = "default";
         jugarMenu.setTexture("jugarMenu2");
-        this.scene.start("nivel1");
+        this.scene.start("parte1");
       });
       //boton creditos
       creditosMenu.on("pointerover", () => {

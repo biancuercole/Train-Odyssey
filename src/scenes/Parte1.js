@@ -1,6 +1,6 @@
-export default class Nivel1 extends Phaser.Scene {
+export default class Parte1 extends Phaser.Scene {
   constructor() {
-    super("nivel1");
+    super("Parte1");
   }
 
   init() {
@@ -110,7 +110,7 @@ export default class Nivel1 extends Phaser.Scene {
     }
     //cuando los km llegan al valor se pasa a la escena de transición para obstaculo
     if (this.contadorKm == 200) {
-      this.scene.start("transicion", { //pasar valores a siguiente escena 
+      this.scene.start("transicion1", { //pasar valores a siguiente escena 
         contadorMonedas: this.contadorMonedas,
         contadorKm: this.contadorKm,
         contadorVidas: this.contadorVidas,
