@@ -4,6 +4,7 @@ export default class Obstaculo1 extends Phaser.Scene {
     this.textoTronco = null;
     this.isPreguntaActive = false;
     this.isBKeyDown = false;
+    this.teclaUno = false;
   }
 
   init(data) {
@@ -66,16 +67,39 @@ export default class Obstaculo1 extends Phaser.Scene {
   }
 
   update() {
-    if (this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_ONE).isDown) {
+    //OPCION 1
+    if (this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_ONE).isDown && this.contadorMonedas >= 200 && !this.teclaUno) {
+      this.teclaUno = true;
       this.contadorMonedas -= 200;
       this.textoMoneda.setText(this.contadorMonedas);
-      this.scene.start("transicion2", {
+      setTimeout(() => {
+        this.scene.start("transicion2", {
         contadorMonedas: this.contadorMonedas,
         contadorKm: this.contadorKm,
         contadorVidas: this.contadorVidas,
-      });
+        })
+      }, 2000);
+    } else if (this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_ONE).isDown && this.contadorMonedas <= 200 && !this.teclaUno) {
+      this.teclaUno = true;
+      this.textoTronco.setVisible(false);
+      this.add.image(400, 200, "monedasInsuficientes").setScale(0.24);
+      this.contadorVidas -= 1;
+      this.textoVidas.setText(this.contadorVidas);
+      setTimeout(() => {
+        this.scene.start("transicion2", {
+        contadorMonedas: this.contadorMonedas,
+        contadorKm: this.contadorKm,
+        contadorVidas: this.contadorVidas,
+        })
+      }, 2000);
+    }
+    if (
+      this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_ONE).isUp
+    ) {
+      this.teclaUno = false; // Restablecer la variable cuando se suelta la tecla "B"
     }
 
+    //OPCION 2
     if (this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_TWO).isDown && !this.isPreguntaActive) {
       this.isPreguntaActive = true;
       this.textoTronco.setVisible(false);
@@ -85,12 +109,6 @@ export default class Obstaculo1 extends Phaser.Scene {
     if (this.isPreguntaActive && this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A).isDown) {
       this.pregunta1.setVisible(false);
       this.add.image(400, 250, "correcto").setScale(0.24);
-    }
-    if (this.isPreguntaActive && this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.B).isDown) {
-      this.pregunta1.setVisible(false);
-      this.add.image(400, 250, "incorrecto").setScale(0.24);
-      this.contadorVidas = 2
-      this.textoVidas.setText(this.contadorVidas);
       setTimeout(() => {
         this.scene.start("transicion2", {
         contadorMonedas: this.contadorMonedas,
@@ -98,6 +116,31 @@ export default class Obstaculo1 extends Phaser.Scene {
         contadorVidas: this.contadorVidas,
         })
       }, 2000);
+    }
+    if (
+      this.isPreguntaActive &&
+      this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.B).isDown &&
+      !this.isBKeyPressed // Verifica si la tecla "B" no ha sido presionada antes
+    ){
+      this.isBKeyPressed = true; // Marca la tecla "B" como presionada
+      this.pregunta1.setVisible(false);
+      this.add.image(400, 250, "incorrecto").setScale(0.24);
+      this.contadorVidas -= 1;
+      this.textoVidas.setText(this.contadorVidas);
+      setTimeout(() => {
+        this.scene.start("transicion2", {
+          contadorMonedas: this.contadorMonedas,
+          contadorKm: this.contadorKm,
+          contadorVidas: this.contadorVidas,
+        });
+      }, 2000);
+    }
+
+    if (
+      this.isPreguntaActive &&
+      this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.B).isUp
+    ) {
+      this.isBKeyPressed = false; // Reestablece la variable cuando se suelta la tecla
     }
   }
 

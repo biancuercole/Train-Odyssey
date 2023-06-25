@@ -30,7 +30,7 @@ export default class Nivel1 extends Phaser.Scene {
     //monedas 
     this.grupoMoneda = this.physics.add.group({allowGravity: false});
     this.time.addEvent ({
-    delay: 7000,
+    delay: 5000,
     callback: this.agregarMoneda, 
     callbackScope: this,
     loop: true,
@@ -40,7 +40,7 @@ export default class Nivel1 extends Phaser.Scene {
     this.tren.body.allowGravity = false;
     //contadorKm
     this.time.addEvent ({
-      delay: 9000,
+      delay: 7000,
       callback: this.kilometros,
       callbackScope: this,
       loop: true,

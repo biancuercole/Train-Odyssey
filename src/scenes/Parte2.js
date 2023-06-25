@@ -30,7 +30,7 @@ export default class Parte2 extends Phaser.Scene {
       //monedas 
       this.grupoMoneda = this.physics.add.group({allowGravity: false});
       this.time.addEvent ({
-      delay: 7000,
+      delay: 5000,
       callback: this.agregarMoneda, 
       callbackScope: this,
       loop: true,
@@ -40,7 +40,7 @@ export default class Parte2 extends Phaser.Scene {
       this.tren.body.allowGravity = false;
       //contadorKm
       this.time.addEvent ({
-        delay: 9000,
+        delay: 7000,
         callback: this.kilometros,
         callbackScope: this,
         loop: true,
@@ -110,7 +110,7 @@ export default class Parte2 extends Phaser.Scene {
       }
       //cuando los km llegan al valor se pasa a la escena de transición para obstaculo
       if (this.contadorKm == 400) {
-        this.scene.start("transicion", { //pasar valores a siguiente escena 
+        this.scene.start("transicion3", { //pasar valores a siguiente escena 
           contadorMonedas: this.contadorMonedas,
           contadorKm: this.contadorKm,
           contadorVidas: this.contadorVidas,
