@@ -56,8 +56,16 @@ export default class Precargas extends Phaser.Scene {
 
       //AUDIO
       this.load.audio("musicaFondo", "./public/audio/musicaFondo.mp3");
+      this.load.audio("click", "./public/audio/click.wav");
+      this.load.audio("botonMouse", "./public/audio/botonMouse.ogg");
     }
     create(){
+      this.click = this.sound.add("click");
+      this.botonMouse = this.sound.add("botonMouse");
+      this.music = this.sound.add('musicaFondo');
+      this.music.play();
+      this.music.setVolume(0.2);
+      this.music.setLoop(true);
       this.anims.create({
         key: 'right',
         frames: this.anims.generateFrameNumbers('trenSheet', { start: 0, end: 3 }),

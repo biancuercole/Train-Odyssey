@@ -9,7 +9,7 @@ export default class Ayuda extends Phaser.Scene {
     }
     update(){
       if (this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC).isDown) {
-        this.scene.start("precargas");
+        this.scene.start("menu");
       }
     }
 }
