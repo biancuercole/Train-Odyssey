@@ -34,6 +34,15 @@ export default class Precargas extends Phaser.Scene {
       this.load.image("correcto", "./public/images/correcto.png");
       this.load.image("incorrecto", "./public/images/incorrecto.png");
       this.load.image("monedasInsuficientes", "./public/images/monedasInsuficientes.png");
+      this.load.image("victoria", "./public/images/victoria.png");
+      this.load.image("reintentarV", "./public/images/reintentarV.png");
+      this.load.image("derrota", "./public/images/derrota.png");
+      this.load.image("reintentarD", "./public/images/reintentarD.png");
+
+      this.load.spritesheet("trenQuietoSheet", "./public/images/victoriaSheet.png", {
+        frameWidth: 800,
+        frameHeight: 600,
+      });
 
       this.load.spritesheet("trenSheet", "./public/images/trenSheet.png", {
         frameWidth: 2000, 
@@ -47,7 +56,13 @@ export default class Precargas extends Phaser.Scene {
         frameRate: 4,
         repeat: -1
       });
-      this.scene.start("obstaculo3");
+      this.anims.create({
+        key: "trenQuietoSheet",
+        frames: this.anims.generateFrameNumbers('trenQuietoSheet', { start: 0, end:1}),
+        frameRate: 2,
+        repeat: -1,
+      });
+      this.scene.start("menu");
       
     }
     upload(){}
