@@ -9,6 +9,7 @@ export default class Parte1 extends Phaser.Scene {
     this.contadorMonedas = 0;
     this.contadorKm = 0;
     this.contadorVidas = 3;
+    this.escAbajo = false;
   }
 
   create() {
@@ -67,6 +68,40 @@ export default class Parte1 extends Phaser.Scene {
   }
 
   update() {
+    if (this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC).isDown && !this.escAbajo) {
+      this.escAbajo = true;
+      console.log(",")
+      this.pausa = this.add.image(400, 200, "pausa").setScale(0.24);
+      const reanudar = this.add.image(400, 300, "reanudar").setScale(0.24).setInteractive();
+      const volverMenu = this.add.image(400, 400, "volverMenu").setScale(0.24).setInteractive();
+      reanudar.on("pointerover", () => {
+        this.game.canvas.style.cursor = "pointer";
+      });
+      reanudar.on("pointerout", () => {
+        this.game.canvas.style.cursor = "default";
+      });
+      reanudar.on("pointerdown", () => {
+        this.game.canvas.style.cursor = "default";
+        reanudar.destroy(true);
+        volverMenu.destroy(true);
+        this.pausa.destroy(true);
+      });
+      volverMenu.on("pointerover", () => {
+        this.game.canvas.style.cursor = "pointer";
+      });
+      volverMenu.on("pointerout", () => {
+        this.game.canvas.style.cursor = "default";
+      });
+      volverMenu.on("pointerdown", () => {
+        this.game.canvas.style.cursor = "default";
+        this.scene.start("menu");
+      });
+    }
+    
+    if (this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC).isUp) {
+      this.escAbajo = false;
+    }
+
     if (this.cursors.right.isDown) {
       //inicia la animacion del tren 
       this.tren.anims.play('right', true);

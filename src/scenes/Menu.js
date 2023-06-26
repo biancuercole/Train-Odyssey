@@ -49,7 +49,7 @@ export default class Menu extends Phaser.Scene {
       ayudaMenu.on("pointerdown", () => {
         this.game.canvas.style.cursor = "default";
         ayudaMenu.setTexture("ayudaMenu2");
-        this.scene.start("instrucciones");
+        this.scene.start("ayuda");
       });
     }
 }

@@ -38,6 +38,11 @@ export default class Precargas extends Phaser.Scene {
       this.load.image("reintentarV", "./public/images/reintentarV.png");
       this.load.image("derrota", "./public/images/derrota.png");
       this.load.image("reintentarD", "./public/images/reintentarD.png");
+      this.load.image("ayuda", "./public/images/ayuda.png");
+      this.load.image("creditos", "./public/images/creditos.png");
+      this.load.image("pausa", "./public/images/pausa.png");
+      this.load.image("reanudar", "./public/images/reanudar.png");
+      this.load.image("volverMenu", "./public/images/volverMenu.png");
 
       this.load.spritesheet("trenQuietoSheet", "./public/images/victoriaSheet.png", {
         frameWidth: 800,

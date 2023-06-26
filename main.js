@@ -2,7 +2,7 @@ import Creditos from "./src/scenes/Creditos.js";
 import Precargas from "./src/scenes/Precargas.js";
 import Preload from "./src/scenes/Preload.js";
 import Derrota from "./src/scenes/Derrota.js";
-import Instrucciones from "./src/scenes/Instrucciones.js";
+import Ayuda from "./src/scenes/Ayuda.js";
 import Menu from "./src/scenes/Menu.js";
 import Parte1 from "./src/scenes/Parte1.js";
 import VictoriaJuego from "./src/scenes/VictoriaJuego.js";
@@ -44,7 +44,7 @@ const config = {
   // List of scenes to load
   // Only the first scene will be shown
   // Remember to import the scene before adding it to the list
-  scene: [Precargas, Preload, Creditos, Derrota, Instrucciones, Menu, Parte1, Transicion1, Transicion2, Transicion3, Transicion4, Transicion5, Obstaculo1, Obstaculo2, Obstaculo3, VictoriaJuego, Parte2, Parte3],
+  scene: [Precargas, Preload, Creditos, Derrota, Ayuda, Menu, Parte1, Transicion1, Transicion2, Transicion3, Transicion4, Transicion5, Obstaculo1, Obstaculo2, Obstaculo3, VictoriaJuego, Parte2, Parte3],
 };
 
 // Create a new Phaser game instance
