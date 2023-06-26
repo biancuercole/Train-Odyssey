@@ -3,6 +3,9 @@ export default class Menu extends Phaser.Scene {
       super("menu");
     }
     create(){
+      const music = this.sound.add('musicaFondo');
+      music.play();
+      music.setLoop(true);
       this.add.image(400,300, "fondo");
       this.add.image(400, 300, "trenMenu").setScale(0.24);
       this.add.image(600, 150, "nombreMenu").setScale(0.24);

@@ -44,15 +44,18 @@ export default class Precargas extends Phaser.Scene {
       this.load.image("reanudar", "./public/images/reanudar.png");
       this.load.image("volverMenu", "./public/images/volverMenu.png");
 
+      //SPRITE SHEETS
       this.load.spritesheet("trenQuietoSheet", "./public/images/victoriaSheet.png", {
         frameWidth: 800,
         frameHeight: 600,
       });
-
       this.load.spritesheet("trenSheet", "./public/images/trenSheet.png", {
         frameWidth: 2000, 
         frameHeight: 600
       });
+
+      //AUDIO
+      this.load.audio("musicaFondo", "./public/audio/musicaFondo.mp3");
     }
     create(){
       this.anims.create({
@@ -67,7 +70,7 @@ export default class Precargas extends Phaser.Scene {
         frameRate: 2,
         repeat: -1,
       });
-      this.scene.start("obstaculo2");
+      this.scene.start("menu");
       
     }
     upload(){}
