@@ -20,7 +20,7 @@ export default class VictoriaJuego extends Phaser.Scene {
       });
       reintentar.on("pointerdown", () => {
         this.game.canvas.style.cursor = "default";
-        this.scene.start("precargas");
+        this.scene.start("menu");
       });
       
       this.time.addEvent ({

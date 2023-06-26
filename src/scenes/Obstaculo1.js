@@ -8,13 +8,14 @@ export default class Obstaculo1 extends Phaser.Scene {
   }
 
   init(data) {
-    this.contadorMonedas = data.contadorMonedas || 0;
+    this.contadorMonedas = data.contadorMonedas || 200;
     this.contadorKm = data.contadorKm || 0;
     this.contadorVidas = data.contadorVidas || 0;
   }
 
   create() {
     // Agregar fondo y parallax
+    this.correcto = this.sound.add("correcto");
     const width = 2000;
     const height = 600;
     this.fondo = this.add.tileSprite(0, 0, width, height, 'background');
@@ -70,6 +71,8 @@ export default class Obstaculo1 extends Phaser.Scene {
     //OPCION 1
     if (this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_ONE).isDown && this.contadorMonedas >= 200 && !this.teclaUno) {
       this.teclaUno = true;
+      this.correcto.play();
+      console.log("sonido")
       this.contadorMonedas -= 200;
       this.textoMoneda.setText(this.contadorMonedas);
       setTimeout(() => {

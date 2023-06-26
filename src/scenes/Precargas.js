@@ -58,6 +58,8 @@ export default class Precargas extends Phaser.Scene {
       this.load.audio("musicaFondo", "./public/audio/musicaFondo.mp3");
       this.load.audio("click", "./public/audio/click.wav");
       this.load.audio("botonMouse", "./public/audio/botonMouse.ogg");
+      this.load.audio("correcto", "./public/audio/correcto.mp3");
+      this.load.audio("incorrecto", "./public/audio/incorrecto.mp3");
     }
     create(){
       this.click = this.sound.add("click");
@@ -78,7 +80,7 @@ export default class Precargas extends Phaser.Scene {
         frameRate: 2,
         repeat: -1,
       });
-      this.scene.start("menu");
+      this.scene.start("obstaculo1");
       
     }
     upload(){}

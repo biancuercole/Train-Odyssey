@@ -14,6 +14,7 @@ export default class Parte1 extends Phaser.Scene {
 
   create() {
     //agregar fondo y parallax
+    this.click = this.sound.add("click");
     const width = 2000;
     const height = 600;
     this.fondo = this.add.tileSprite(0, 0, width, height, 'background');
@@ -169,6 +170,7 @@ export default class Parte1 extends Phaser.Scene {
 
   colectarMoneda(moneda, pinza) {
     this.contadorMonedas += 50;
+    this.click.play();
     pinza.disableBody(true, true);
     console.log(this.contadorMonedas);
     this.textoMoneda.setText(this.contadorMonedas)
