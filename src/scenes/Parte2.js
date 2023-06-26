@@ -3,6 +3,7 @@ export default class Parte2 extends Phaser.Scene {
       super("parte2");
       this.velocidadBackground = 0.5;
       this.velocidadParallax = 2;
+      this.escAbajo = false;
     }
   
     init(data) {
@@ -95,6 +96,10 @@ export default class Parte2 extends Phaser.Scene {
           this.game.canvas.style.cursor = "default";
           this.scene.start("menu");
         });
+      }
+      
+      if (this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC).isUp) {
+        this.escAbajo = false;
       }
       if (this.cursors.right.isDown) {
         //inicia la animacion del tren 
