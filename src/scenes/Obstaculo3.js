@@ -67,7 +67,7 @@ export default class Obstaculo3 extends Phaser.Scene {
     }
   
     update() {
-      if (this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_ONE).isDown && this.contadorMonedas >= 200) {
+      if (this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_ONE).isDown && this.contadorMonedas >= 600) {
         this.contadorMonedas -= 200;
         this.textoMoneda.setText(this.contadorMonedas);
         this.scene.start("victoriajuego", {
@@ -75,7 +75,7 @@ export default class Obstaculo3 extends Phaser.Scene {
           contadorKm: this.contadorKm,
           contadorVidas: this.contadorVidas,
         });
-      } else if (this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_ONE).isDown && this.contadorMonedas <= 200 && !this.teclaUno && this.contadorVidas > 1) {
+      } else if (this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_ONE).isDown && this.contadorMonedas <= 600 && !this.teclaUno && this.contadorVidas > 1) {
         this.teclaUno = true;
         this.textoTronco.setVisible(false);
         this.add.image(400, 200, "monedasInsuficientes").setScale(0.24);
