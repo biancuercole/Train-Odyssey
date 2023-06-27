@@ -65,7 +65,7 @@ export default class Obstaculo1 extends Phaser.Scene {
 
   update() {
     //OPCION 1
-    if (this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_ONE).isDown && this.contadorMonedas >= 200 && !this.teclaUno) {
+    if (this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ONE).isDown && this.contadorMonedas >= 200 && !this.teclaUno) {
       this.teclaUno = true;
       this.correcto.play();
       this.correcto.setLoop(false);
@@ -78,7 +78,7 @@ export default class Obstaculo1 extends Phaser.Scene {
         contadorVidas: this.contadorVidas,
         })
       }, 2000);
-    } else if (this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_ONE).isDown && this.contadorMonedas <= 200 && !this.teclaUno) {
+    } else if (this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ONE).isDown && this.contadorMonedas <= 200 && !this.teclaUno) {
       this.teclaUno = true;
       this.incorrecto.play();
       this.textoTronco.setVisible(false);
@@ -94,13 +94,13 @@ export default class Obstaculo1 extends Phaser.Scene {
       }, 2000);
     }
     if (
-      this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_ONE).isUp
+      this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ONE).isUp
     ) {
       this.teclaUno = false; // Restablecer la variable cuando se suelta la tecla "B"
     }
 
     //OPCION 2
-    if (this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_TWO).isDown && !this.isPreguntaActive) {
+    if (this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.TWO).isDown && !this.isPreguntaActive) {
       this.isPreguntaActive = true;
       this.textoTronco.setVisible(false);
       this.pregunta1 = this.add.image(400, 250, "pregunta1").setScale(0.24);

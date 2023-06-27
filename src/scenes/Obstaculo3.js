@@ -10,7 +10,7 @@ export default class Obstaculo3 extends Phaser.Scene {
     init(data) {
       this.contadorMonedas = data.contadorMonedas || 0;
       this.contadorKm = data.contadorKm || 0;
-      this.contadorVidas = data.contadorVidas || 0;
+      this.contadorVidas = data.contadorVidas || 3;
     }
   
     create() {
@@ -69,7 +69,7 @@ export default class Obstaculo3 extends Phaser.Scene {
     }
   
     update() {
-      if (this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_ONE).isDown && this.contadorMonedas >= 400) {
+      if (this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ONE).isDown && this.contadorMonedas >= 400) {
         this.contadorMonedas -= 200;
         this.correcto.play();
         this.correcto.setLoop(false);
@@ -79,7 +79,7 @@ export default class Obstaculo3 extends Phaser.Scene {
           contadorKm: this.contadorKm,
           contadorVidas: this.contadorVidas,
         });
-      } else if (this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_ONE).isDown && this.contadorMonedas <= 600 && !this.teclaUno && this.contadorVidas > 1) {
+      } else if (this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ONE).isDown && this.contadorMonedas <= 600 && !this.teclaUno && this.contadorVidas > 1) {
         this.teclaUno = true;
         this.textoTronco.setVisible(false);
         this.incorrecto.play();
@@ -93,7 +93,7 @@ export default class Obstaculo3 extends Phaser.Scene {
           contadorVidas: this.contadorVidas,
           })
         }, 2000);
-      } else if (this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_ONE).isDown && this.contadorMonedas <= 200 && !this.teclaUno && this.contadorVidas == 1) {
+      } else if (this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ONE).isDown && this.contadorMonedas <= 200 && !this.teclaUno && this.contadorVidas == 1) {
         this.teclaUno = true;
         this.textoTronco.setVisible(false);
         this.incorrecto.play();
@@ -109,13 +109,13 @@ export default class Obstaculo3 extends Phaser.Scene {
         }, 2000);
       }
       if (
-        this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_ONE).isUp
+        this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ONE).isUp
       ) {
         this.teclaUno = false; // Restablecer la variable cuando se suelta la tecla "B"
       }  
       
   
-      if (this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_TWO).isDown && !this.isPreguntaActive) {
+      if (this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.TWO).isDown && !this.isPreguntaActive) {
         this.isPreguntaActive = true;
         this.textoTronco.setVisible(false);
         this.pregunta1 = this.add.image(400, 230, "pregunta3").setScale(0.24);
