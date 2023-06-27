@@ -16,7 +16,7 @@ Mejoras propuestas a futuro:
 - Agregar objetos que aparezcan de manera similar a la moneda pero sean destructivos, y que si se los recolecta se pierda una vida. 
 - Agregar un nivel nocturno en el cual se deba utilizar una linterna para ver ciertos objetos recolectables. 
 
-Si querés jugar a "Train Odyssey" lo podés hacer a través de este link: https://biancuercole.github.io/Train-Odyssey/ 
+Si querés jugar a "Train Odyssey" lo podés hacer a través de este link: https://biancuercole.github.io/Train-Odyssey/
 
 ¡Muchas gracias por pasar por aca!
 Ante cualquier duda, este es mi contacto: biancaercole2003@gmail.com
