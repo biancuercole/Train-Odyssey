@@ -10,7 +10,7 @@ export default class Obstaculo3 extends Phaser.Scene {
     init(data) {
       this.contadorMonedas = data.contadorMonedas || 0;
       this.contadorKm = data.contadorKm || 0;
-      this.contadorVidas = data.contadorVidas || 3;
+      this.contadorVidas = data.contadorVidas || 0;
     }
   
     create() {
