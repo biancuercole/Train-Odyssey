@@ -72,9 +72,9 @@ export default class Parte3 extends Phaser.Scene {
       if (this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC).isDown && !this.escAbajo) {
         this.escAbajo = true;
         console.log(",")
-        this.pausa = this.add.image(400, 200, "pausa").setScale(0.24);
-        const reanudar = this.add.image(400, 300, "reanudar").setScale(0.24).setInteractive();
-        const volverMenu = this.add.image(400, 400, "volverMenu").setScale(0.24).setInteractive();
+        this.pausa = this.add.image(400, 100, "pausa").setScale(0.24);
+        const reanudar = this.add.image(400, 200, "reanudar").setScale(0.24).setInteractive();
+        const volverMenu = this.add.image(400, 300, "volverMenu").setScale(0.24).setInteractive();
         reanudar.on("pointerover", () => {
           this.game.canvas.style.cursor = "pointer";
         });

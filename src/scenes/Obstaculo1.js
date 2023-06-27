@@ -3,12 +3,12 @@ export default class Obstaculo1 extends Phaser.Scene {
     super("obstaculo1");
     this.textoTronco = null;
     this.isPreguntaActive = false;
-    this.isBKeyDown = false;
+    this.isBKeyPressed = false;
     this.teclaUno = false;
   }
 
   init(data) {
-    this.contadorMonedas = data.contadorMonedas || 200;
+    this.contadorMonedas = data.contadorMonedas || 0;
     this.contadorKm = data.contadorKm || 0;
     this.contadorVidas = data.contadorVidas || 0;
   }
@@ -16,13 +16,13 @@ export default class Obstaculo1 extends Phaser.Scene {
   create() {
     // Agregar fondo y parallax
     this.correcto = this.sound.add("correcto");
+    this.incorrecto = this.sound.add("incorrecto");
     const width = 2000;
     const height = 600;
     this.fondo = this.add.tileSprite(0, 0, width, height, 'background');
     this.fondo.setOrigin(0, 0);
     this.parallax = this.add.tileSprite(0, 0, width, height, "parallax");
     this.parallax.setOrigin(0, 0);
-
     // Agregar interfaz
     this.add.image(1000, 300, "interfaz");
     this.add.image(20, 20, "moneda");
@@ -30,17 +30,14 @@ export default class Obstaculo1 extends Phaser.Scene {
     this.add.image(1605, 300, "distancia");
     this.textoTronco = this.add.image(400, 230, "textoTronco").setScale(0.20);
     this.add.image(980, 300, "obstaculo3");
-
     // Pinza
     this.pinza = this.physics.add.sprite(432, 420, "pinza");
     this.pinza.body.allowGravity = false;
-
     // Agregar sprite de tren y sacar gravedad
     this.tren = this.physics.add.sprite(950, 300, 'trenSheet');
     this.tren.body.allowGravity = false;
-
+    //teclado 
     this.cursors = this.input.keyboard.createCursorKeys();
-
     // ContadorKm
     this.time.addEvent({
       delay: 9000,
@@ -48,7 +45,6 @@ export default class Obstaculo1 extends Phaser.Scene {
       callbackScope: this,
       loop: true,
     });
-
     // Textos
     this.textoMoneda = this.add.text(40, 7, this.contadorMonedas, {
       fontSize: "20px",
@@ -72,7 +68,7 @@ export default class Obstaculo1 extends Phaser.Scene {
     if (this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_ONE).isDown && this.contadorMonedas >= 200 && !this.teclaUno) {
       this.teclaUno = true;
       this.correcto.play();
-      console.log("sonido")
+      this.correcto.setLoop(false);
       this.contadorMonedas -= 200;
       this.textoMoneda.setText(this.contadorMonedas);
       setTimeout(() => {
@@ -84,6 +80,7 @@ export default class Obstaculo1 extends Phaser.Scene {
       }, 2000);
     } else if (this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_ONE).isDown && this.contadorMonedas <= 200 && !this.teclaUno) {
       this.teclaUno = true;
+      this.incorrecto.play();
       this.textoTronco.setVisible(false);
       this.add.image(400, 200, "monedasInsuficientes").setScale(0.24);
       this.contadorVidas -= 1;
@@ -111,6 +108,9 @@ export default class Obstaculo1 extends Phaser.Scene {
 
     if (this.isPreguntaActive && this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A).isDown) {
       this.pregunta1.setVisible(false);
+      this.correcto.play();
+      this.correcto.setLoop(false);
+      console.log("sonido")
       this.add.image(400, 250, "correcto").setScale(0.24);
       setTimeout(() => {
         this.scene.start("transicion2", {
@@ -127,6 +127,7 @@ export default class Obstaculo1 extends Phaser.Scene {
     ){
       this.isBKeyPressed = true; // Marca la tecla "B" como presionada
       this.pregunta1.setVisible(false);
+      this.incorrecto.play();
       this.add.image(400, 250, "incorrecto").setScale(0.24);
       this.contadorVidas -= 1;
       this.textoVidas.setText(this.contadorVidas);

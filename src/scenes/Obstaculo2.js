@@ -4,7 +4,7 @@ export default class Obstaculo2 extends Phaser.Scene {
       this.textoTronco = null;
       this.isPreguntaActive = false;
       this.isAKeyPressed = false;
-
+      this.teclaUno = false;
     }
   
     init(data) {
@@ -14,6 +14,9 @@ export default class Obstaculo2 extends Phaser.Scene {
     }
   
     create() {
+      //agregar audios
+      this.correcto = this.sound.add("correcto");
+      this.incorrecto = this.sound.add("incorrecto");
       // Agregar fondo y parallax
       const width = 2000;
       const height = 600;
@@ -69,6 +72,9 @@ export default class Obstaculo2 extends Phaser.Scene {
     update() {
       if (this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_ONE).isDown && this.contadorMonedas >= 400) {
         this.contadorMonedas -= 200;
+        this.correcto.play();
+        this.correcto.setLoop(false);
+        console.log("sonido")
         this.textoMoneda.setText(this.contadorMonedas);
         this.scene.start("transicion4", {
           contadorMonedas: this.contadorMonedas,
@@ -78,6 +84,7 @@ export default class Obstaculo2 extends Phaser.Scene {
       } else if (this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_ONE).isDown && this.contadorMonedas <= 400 && !this.teclaUno) {
         this.teclaUno = true;
         this.textoTronco.setVisible(false);
+        this.incorrecto.play();
         this.add.image(400, 200, "monedasInsuficientes").setScale(0.24);
         this.contadorVidas -= 1
         this.textoVidas.setText(this.contadorVidas);
@@ -104,6 +111,9 @@ export default class Obstaculo2 extends Phaser.Scene {
   
       if (this.isPreguntaActive && this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.B).isDown) {
         this.pregunta1.setVisible(false);
+        this.correcto.play();
+        this.correcto.setLoop(false);
+        console.log("sonido")
         this.add.image(400, 250, "correcto").setScale(0.24);
         setTimeout(() => {
           this.scene.start("transicion4", {
@@ -117,6 +127,7 @@ export default class Obstaculo2 extends Phaser.Scene {
         if (this.isPreguntaActive && this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A).isDown && !this.isAKeyPressed ) {
             this.isAKeyPressed = true; // Marcar la tecla "B" como presionada
             this.pregunta1.setVisible(false);
+            this.incorrecto.play();
             this.add.image(400, 250, "incorrecto").setScale(0.24);
             this.contadorVidas -= 1;
             this.textoVidas.setText(this.contadorVidas);
