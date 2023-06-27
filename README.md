@@ -17,6 +17,7 @@ Mejoras propuestas a futuro:
 - Agregar un nivel nocturno en el cual se deba utilizar una linterna para ver ciertos objetos recolectables. 
 
 Si querés jugar a "Train Odyssey" lo podés hacer a través de este link: https://biancuercole.github.io/Train-Odyssey/
+En el siguiente link se encuentra el PDF de mi TDD: https://drive.google.com/file/d/1wIjZkkYnE6idyNEd1rT3pTrYVFaMk_fg/view?usp=sharing
 
 ¡Muchas gracias por pasar por aca!
 Ante cualquier duda, este es mi contacto: biancaercole2003@gmail.com
