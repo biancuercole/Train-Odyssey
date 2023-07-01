@@ -13,8 +13,10 @@ export default class Parte1 extends Phaser.Scene {
   }
 
   create() {
-    //agregar fondo y parallax
+    //sonidos
     this.click = this.sound.add("click");
+    this.incorrecto = this.sound.add("incorrecto");
+    //agregar fondo y parallax
     const width = 2000;
     const height = 600;
     this.fondo = this.add.tileSprite(0, 0, width, height, 'background');
@@ -37,6 +39,14 @@ export default class Parte1 extends Phaser.Scene {
     callbackScope: this,
     loop: true,
     });  
+    //bomba
+    this.grupoBomba = this.physics.add.group({allowGravity: false});
+    this.time.addEvent ({
+    delay: 7000,
+    callback: this.agregarBomba, 
+    callbackScope: this,
+    loop: true,
+    }); 
     //agregar sprite de tren y sacar gravedad
     this.tren = this.physics.add.sprite(950, 300, 'trenSheet');
     this.tren.body.allowGravity = false;
@@ -66,6 +76,7 @@ export default class Parte1 extends Phaser.Scene {
     
     this.cursors = this.input.keyboard.createCursorKeys();
     this.physics.add.overlap(this.pinza, this.grupoMoneda, this.colectarMoneda, null, this);
+    this.physics.add.overlap(this.pinza, this.grupoBomba, this.colectarBomba, null, this);
   }
 
   update() {
@@ -111,11 +122,13 @@ export default class Parte1 extends Phaser.Scene {
       this.parallax.tilePositionX += this.velocidadParallax;
       //velocidad monedas 
       this.grupoMoneda.setVelocityX(-100);
+      this.grupoBomba.setVelocityX(-100);
     } else if (this.cursors.right.isUp){
       //frena animación de tren
       this.tren.anims.stop('right');
       //frena movimiento monedas
       this.grupoMoneda.setVelocityX(-0);
+      this.grupoBomba.setVelocityX(-0);
     }    
 
     const limiteSuperior = 320;
@@ -135,7 +148,7 @@ export default class Parte1 extends Phaser.Scene {
     //si la pinza esta en limite inferior y no se mueve, ahora se puede mover y no tiene gravedad
     if (this.cursors.space.isDown) {
       if (isPinzaEnLimiteInferior || !this.isPinzaEnMovimiento) {
-        this.pinza.setVelocityY(-150);
+        this.pinza.setVelocityY(-180);
         this.isPinzaEnMovimiento = true;
         this.pinza.body.allowGravity = false;
       }
@@ -145,7 +158,7 @@ export default class Parte1 extends Phaser.Scene {
       this.pinza.body.allowGravity = true;
     }
     //cuando los km llegan al valor se pasa a la escena de transición para obstaculo
-    if (this.contadorKm == 200) {
+    if (this.contadorKm == 250) {
       this.scene.start("transicion1", { //pasar valores a siguiente escena 
         contadorMonedas: this.contadorMonedas,
         contadorKm: this.contadorKm,
@@ -159,6 +172,12 @@ export default class Parte1 extends Phaser.Scene {
       let moneda = this.grupoMoneda.create(800, 260, "moneda");
       };
     this.physics.add.overlap(this.pinza, this.moneda, this.colectarMoneda, null, this);
+  }
+  agregarBomba() {
+    if (this.cursors.right.isDown) {
+      let bomba = this.grupoBomba.create(800, 300, "bomba");
+    };
+    this.physics.add.overlap(this.pinza, this.bomba, this.colectarBomba, null, this);
   }
 
   kilometros() {
@@ -174,6 +193,11 @@ export default class Parte1 extends Phaser.Scene {
     pinza.disableBody(true, true);
     console.log(this.contadorMonedas);
     this.textoMoneda.setText(this.contadorMonedas)
+  }
+  
+  colectarBomba(bomba, pinza) {
+    this.incorrecto.play();
+    this.scene.start("derrota");
   }
 }
 
