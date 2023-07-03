@@ -210,7 +210,11 @@ export default class Parte1 extends Phaser.Scene {
   
   textoObstaculo(obstaculo, tren) {
     console.log("overlap");
-    this.scene.start("obstaculo1")
+    this.scene.start("obstaculo1", {
+      contadorMonedas: this.contadorMonedas,
+      contadorKm: this.contadorKm,
+      contadorVidas: this.contadorVidas,
+    })
   }
 }
 
