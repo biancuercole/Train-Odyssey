@@ -47,8 +47,16 @@ export default class Parte1 extends Phaser.Scene {
     callbackScope: this,
     loop: true,
     }); 
+    //obstaculo
+    this.obstaculoUno = this.physics.add.group({allowGravity: false});
+    this.time.addEvent ({
+      delay: 40000, 
+      callback: this.obstaculoPrimero, 
+      callbackScope: this, 
+      loop: false,
+    });
     //agregar sprite de tren y sacar gravedad
-    this.tren = this.physics.add.sprite(950, 300, 'trenSheet');
+    this.tren = this.physics.add.sprite(280, 300, 'trenSheet');
     this.tren.body.allowGravity = false;
     //contadorKm
     this.time.addEvent ({
@@ -77,6 +85,7 @@ export default class Parte1 extends Phaser.Scene {
     this.cursors = this.input.keyboard.createCursorKeys();
     this.physics.add.overlap(this.pinza, this.grupoMoneda, this.colectarMoneda, null, this);
     this.physics.add.overlap(this.pinza, this.grupoBomba, this.colectarBomba, null, this);
+    this.physics.add.overlap(this.tren, this.obstaculoUno, this.textoObstaculo, null, this);
   }
 
   update() {
@@ -123,12 +132,14 @@ export default class Parte1 extends Phaser.Scene {
       //velocidad monedas 
       this.grupoMoneda.setVelocityX(-100);
       this.grupoBomba.setVelocityX(-100);
+      this.obstaculoUno.setVelocityX(-100);
     } else if (this.cursors.right.isUp){
       //frena animación de tren
       this.tren.anims.stop('right');
       //frena movimiento monedas
       this.grupoMoneda.setVelocityX(-0);
       this.grupoBomba.setVelocityX(-0);
+      this.obstaculoUno.setVelocityX(-0);
     }    
 
     const limiteSuperior = 320;
@@ -157,27 +168,24 @@ export default class Parte1 extends Phaser.Scene {
       this.isPinzaEnMovimiento = false;
       this.pinza.body.allowGravity = true;
     }
-    //cuando los km llegan al valor se pasa a la escena de transición para obstaculo
-    if (this.contadorKm == 250) {
-      this.scene.start("transicion1", { //pasar valores a siguiente escena 
-        contadorMonedas: this.contadorMonedas,
-        contadorKm: this.contadorKm,
-        contadorVidas: this.contadorVidas,
-      })
-    }
+
   }
 
   agregarMoneda() {
     if (this.cursors.right.isDown) {
       let moneda = this.grupoMoneda.create(800, 260, "moneda");
       };
-    this.physics.add.overlap(this.pinza, this.moneda, this.colectarMoneda, null, this);
   }
   agregarBomba() {
     if (this.cursors.right.isDown) {
       let bomba = this.grupoBomba.create(800, 300, "bomba");
     };
-    this.physics.add.overlap(this.pinza, this.bomba, this.colectarBomba, null, this);
+  }
+
+  obstaculoPrimero() {
+    if (this.cursors.right.isDown) {
+      let obstaculo = this.obstaculoUno.create(820, 450, "obstaculo1"); 
+    }
   }
 
   kilometros() {
@@ -198,6 +206,11 @@ export default class Parte1 extends Phaser.Scene {
   colectarBomba(bomba, pinza) {
     this.incorrecto.play();
     this.scene.start("derrota");
+  }
+  
+  textoObstaculo(obstaculo, tren) {
+    console.log("overlap");
+    this.scene.start("obstaculo1")
   }
 }
 

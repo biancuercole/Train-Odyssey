@@ -51,7 +51,7 @@ export default class Precargas extends Phaser.Scene {
         frameHeight: 600,
       });
       this.load.spritesheet("trenSheet", "./public/images/trenSheet.png", {
-        frameWidth: 2000, 
+        frameWidth: 660, 
         frameHeight: 600
       });
 
@@ -81,7 +81,7 @@ export default class Precargas extends Phaser.Scene {
         frameRate: 2,
         repeat: -1,
       });
-      this.scene.start("menu");
+      this.scene.start("parte1");
       
     }
     upload(){}

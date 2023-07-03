@@ -29,12 +29,12 @@ export default class Obstaculo1 extends Phaser.Scene {
     this.add.image(1300, 300, "vidas");
     this.add.image(1605, 300, "distancia");
     this.textoTronco = this.add.image(400, 230, "textoTronco").setScale(0.20);
-    this.add.image(980, 300, "obstaculo3");
+    this.add.image(965, 300, "obstaculo3");
     // Pinza
     this.pinza = this.physics.add.sprite(432, 420, "pinza");
     this.pinza.body.allowGravity = false;
     // Agregar sprite de tren y sacar gravedad
-    this.tren = this.physics.add.sprite(950, 300, 'trenSheet');
+    this.tren = this.physics.add.sprite(280, 300, 'trenSheet');
     this.tren.body.allowGravity = false;
     //teclado 
     this.cursors = this.input.keyboard.createCursorKeys();
