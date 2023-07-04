@@ -131,7 +131,7 @@ export default class Parte2 extends Phaser.Scene {
       this.parallax.tilePositionX += this.velocidadParallax;
       //velocidad monedas 
       this.grupoMoneda.setVelocityX(-100);
-      this.grupoBomba.setVelocityX(-160);
+      this.grupoBomba.setVelocityX(-130);
       this.obstaculoDos.setVelocityX(-100);
     } else if (this.cursors.right.isUp){
       //frena animación de tren
@@ -184,7 +184,7 @@ export default class Parte2 extends Phaser.Scene {
 
   obstaculoSegundo() {
     if (this.cursors.right.isDown) {
-      let obstaculo = this.obstaculoDos.create(820, 490, "obstaculo2"); 
+      let obstaculo = this.obstaculoDos.create(820, 420, "obstaculo2"); 
     }
   }
 

@@ -29,7 +29,7 @@ export default class Obstaculo1 extends Phaser.Scene {
     this.add.image(1300, 300, "vidas");
     this.add.image(1605, 300, "distancia");
     this.textoTronco = this.add.image(400, 230, "textoTronco").setScale(0.20);
-    this.add.image(965, 300, "obstaculo3");
+    this.add.image(670, 487, "obstaculo1");
     // Pinza
     this.pinza = this.physics.add.sprite(432, 420, "pinza");
     this.pinza.body.allowGravity = false;
