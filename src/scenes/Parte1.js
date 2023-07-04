@@ -42,7 +42,7 @@ export default class Parte1 extends Phaser.Scene {
     //bomba
     this.grupoBomba = this.physics.add.group({allowGravity: false});
     this.time.addEvent ({
-    delay: 8000,
+    delay: 6500,
     callback: this.agregarBomba, 
     callbackScope: this,
     loop: true,
@@ -131,7 +131,7 @@ export default class Parte1 extends Phaser.Scene {
       this.parallax.tilePositionX += this.velocidadParallax;
       //velocidad monedas 
       this.grupoMoneda.setVelocityX(-100);
-      this.grupoBomba.setVelocityX(-100);
+      this.grupoBomba.setVelocityX(-130);
       this.obstaculoUno.setVelocityX(-100);
     } else if (this.cursors.right.isUp){
       //frena animación de tren
@@ -184,7 +184,7 @@ export default class Parte1 extends Phaser.Scene {
 
   obstaculoPrimero() {
     if (this.cursors.right.isDown) {
-      let obstaculo = this.obstaculoUno.create(820, 450, "obstaculo1"); 
+      let obstaculo = this.obstaculoUno.create(820, 490, "obstaculo1"); 
     }
   }
 
