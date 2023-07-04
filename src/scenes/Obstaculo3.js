@@ -30,14 +30,14 @@ export default class Obstaculo3 extends Phaser.Scene {
       this.add.image(1300, 300, "vidas");
       this.add.image(1605, 300, "distancia");
       this.textoTronco = this.add.image(400, 230, "textoCaja").setScale(0.20);
-      this.add.image(980, 300, "obstaculo2");
+      this.add.image(670, 475, "obstaculo3");
   
       // Pinza
       this.pinza = this.physics.add.sprite(432, 420, "pinza");
       this.pinza.body.allowGravity = false;
   
       // Agregar sprite de tren y sacar gravedad
-      this.tren = this.physics.add.sprite(950, 300, 'trenSheet');
+      this.tren = this.physics.add.sprite(280, 300, 'trenSheet');
       this.tren.body.allowGravity = false;
   
       this.cursors = this.input.keyboard.createCursorKeys();
@@ -70,7 +70,7 @@ export default class Obstaculo3 extends Phaser.Scene {
   
     update() {
       if (this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ONE).isDown && this.contadorMonedas >= 400) {
-        this.contadorMonedas -= 200;
+        this.contadorMonedas -= 400;
         this.correcto.play();
         this.correcto.setLoop(false);
         this.textoMoneda.setText(this.contadorMonedas);

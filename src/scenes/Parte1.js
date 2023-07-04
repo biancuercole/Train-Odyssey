@@ -39,14 +39,6 @@ export default class Parte1 extends Phaser.Scene {
     callbackScope: this,
     loop: true,
     });  
-    //bomba
-    this.grupoBomba = this.physics.add.group({allowGravity: false});
-    this.time.addEvent ({
-    delay: 6500,
-    callback: this.agregarBomba, 
-    callbackScope: this,
-    loop: true,
-    }); 
     //obstaculo
     this.obstaculoUno = this.physics.add.group({allowGravity: false});
     this.time.addEvent ({
@@ -84,7 +76,6 @@ export default class Parte1 extends Phaser.Scene {
     
     this.cursors = this.input.keyboard.createCursorKeys();
     this.physics.add.overlap(this.pinza, this.grupoMoneda, this.colectarMoneda, null, this);
-    this.physics.add.overlap(this.pinza, this.grupoBomba, this.colectarBomba, null, this);
     this.physics.add.overlap(this.tren, this.obstaculoUno, this.textoObstaculo, null, this);
   }
 
@@ -131,14 +122,12 @@ export default class Parte1 extends Phaser.Scene {
       this.parallax.tilePositionX += this.velocidadParallax;
       //velocidad monedas 
       this.grupoMoneda.setVelocityX(-100);
-      this.grupoBomba.setVelocityX(-130);
       this.obstaculoUno.setVelocityX(-100);
     } else if (this.cursors.right.isUp){
       //frena animación de tren
       this.tren.anims.stop('right');
       //frena movimiento monedas
       this.grupoMoneda.setVelocityX(-0);
-      this.grupoBomba.setVelocityX(-0);
       this.obstaculoUno.setVelocityX(-0);
     }    
 
@@ -176,11 +165,6 @@ export default class Parte1 extends Phaser.Scene {
       let moneda = this.grupoMoneda.create(800, 260, "moneda");
       };
   }
-  agregarBomba() {
-    if (this.cursors.right.isDown) {
-      let bomba = this.grupoBomba.create(800, 300, "bomba");
-    };
-  }
 
   obstaculoPrimero() {
     if (this.cursors.right.isDown) {
@@ -201,11 +185,6 @@ export default class Parte1 extends Phaser.Scene {
     pinza.disableBody(true, true);
     console.log(this.contadorMonedas);
     this.textoMoneda.setText(this.contadorMonedas)
-  }
-  
-  colectarBomba(bomba, pinza) {
-    this.incorrecto.play();
-    this.scene.start("derrota");
   }
   
   textoObstaculo(obstaculo, tren) {
