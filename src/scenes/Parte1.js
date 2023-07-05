@@ -121,7 +121,7 @@ export default class Parte1 extends Phaser.Scene {
       this.fondo.tilePositionX += this.velocidadBackground;
       this.parallax.tilePositionX += this.velocidadParallax;
       //velocidad monedas 
-      this.grupoMoneda.setVelocityX(-100);
+      this.grupoMoneda.setVelocityX(-250);
       this.obstaculoUno.setVelocityX(-100);
     } else if (this.cursors.right.isUp){
       //frena animación de tren
@@ -148,7 +148,7 @@ export default class Parte1 extends Phaser.Scene {
     //si la pinza esta en limite inferior y no se mueve, ahora se puede mover y no tiene gravedad
     if (this.cursors.space.isDown) {
       if (isPinzaEnLimiteInferior || !this.isPinzaEnMovimiento) {
-        this.pinza.setVelocityY(-150);
+        this.pinza.setVelocityY(-130);
         this.isPinzaEnMovimiento = true;
         this.pinza.body.allowGravity = false;
       }
@@ -168,7 +168,7 @@ export default class Parte1 extends Phaser.Scene {
 
   obstaculoPrimero() {
     if (this.cursors.right.isDown) {
-      let obstaculo = this.obstaculoUno.create(820, 490, "obstaculo1"); 
+      let obstaculo = this.obstaculoUno.create(820, 487, "obstaculo1"); 
     }
   }
 

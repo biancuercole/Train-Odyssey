@@ -178,7 +178,7 @@ export default class Parte3 extends Phaser.Scene {
   }
   agregarBomba() {
     if (this.cursors.right.isDown) {
-      const randomY = Phaser.Math.RND.between(260, 325);
+      const randomY = Phaser.Math.RND.between(260, 320);
       let bomba = this.grupoBomba.create(800, randomY, "bomba");
     };
   }

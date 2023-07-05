@@ -65,7 +65,7 @@ export default class Obstaculo2 extends Phaser.Scene {
 
   update() {
     //OPCION 1
-    if (this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ONE).isDown && this.contadorMonedas >= 200 && !this.teclaUno) {
+    if (this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ONE).isDown && this.contadorMonedas >= 400 && !this.teclaUno) {
       this.teclaUno = true;
       this.correcto.play();
       this.correcto.setLoop(false);
@@ -78,7 +78,7 @@ export default class Obstaculo2 extends Phaser.Scene {
         contadorVidas: this.contadorVidas,
         })
       }, 2000);
-    } else if (this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ONE).isDown && this.contadorMonedas <= 200 && !this.teclaUno) {
+    } else if (this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ONE).isDown && this.contadorMonedas <= 400 && !this.teclaUno) {
       this.teclaUno = true;
       this.incorrecto.play();
       this.textoTronco.setVisible(false);
@@ -106,7 +106,7 @@ export default class Obstaculo2 extends Phaser.Scene {
       this.pregunta1 = this.add.image(400, 250, "pregunta2").setScale(0.24);
     }
 
-    if (this.isPreguntaActive && this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A).isDown) {
+    if (this.isPreguntaActive && this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.B).isDown) {
       this.pregunta1.setVisible(false);
       this.correcto.play();
       this.correcto.setLoop(false);
@@ -122,7 +122,7 @@ export default class Obstaculo2 extends Phaser.Scene {
     }
     if (
       this.isPreguntaActive &&
-      this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.B).isDown &&
+      this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A).isDown &&
       !this.isBKeyPressed // Verifica si la tecla "B" no ha sido presionada antes
     ){
       this.isBKeyPressed = true; // Marca la tecla "B" como presionada
@@ -142,7 +142,7 @@ export default class Obstaculo2 extends Phaser.Scene {
 
     if (
       this.isPreguntaActive &&
-      this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.B).isUp
+      this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A).isUp
     ) {
       this.isBKeyPressed = false; // Reestablece la variable cuando se suelta la tecla
     }
