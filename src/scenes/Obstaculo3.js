@@ -8,9 +8,9 @@ export default class Obstaculo3 extends Phaser.Scene {
     }
   
     init(data) {
-      this.contadorMonedas = data.contadorMonedas || 100;
+      this.contadorMonedas = data.contadorMonedas || 0;
       this.contadorKm = data.contadorKm || 0;
-      this.contadorVidas = data.contadorVidas || 2;
+      this.contadorVidas = data.contadorVidas || 0;
     }
   
     create() {
@@ -69,8 +69,8 @@ export default class Obstaculo3 extends Phaser.Scene {
     }
   
     update() {
-      if (this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ONE).isDown && this.contadorMonedas >= 400) {
-        this.contadorMonedas -= 400;
+      if (this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ONE).isDown && this.contadorMonedas >= 600) {
+        this.contadorMonedas -= 600;
         this.correcto.play();
         this.correcto.setLoop(false);
         this.textoMoneda.setText(this.contadorMonedas);
@@ -93,7 +93,7 @@ export default class Obstaculo3 extends Phaser.Scene {
           contadorVidas: this.contadorVidas,
           })
         }, 2000);
-      } else if (this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ONE).isDown && this.contadorMonedas <= 200 && !this.teclaUno && this.contadorVidas == 1) {
+      } else if (this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ONE).isDown && this.contadorMonedas <= 600 && !this.teclaUno && this.contadorVidas == 1) {
         this.teclaUno = true;
         this.textoTronco.setVisible(false);
         this.incorrecto.play();
@@ -118,7 +118,7 @@ export default class Obstaculo3 extends Phaser.Scene {
       if (this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.TWO).isDown && !this.isPreguntaActive) {
         this.isPreguntaActive = true;
         this.textoTronco.setVisible(false);
-        this.pregunta1 = this.add.image(400, 230, "pregunta3").setScale(0.24);
+        this.pregunta1 = this.add.image(400, 230, "pregunta3").setScale(0.22);
       }
   
       if (this.isPreguntaActive && this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A).isDown) {

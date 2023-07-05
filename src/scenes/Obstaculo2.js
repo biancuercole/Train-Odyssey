@@ -103,7 +103,7 @@ export default class Obstaculo2 extends Phaser.Scene {
     if (this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.TWO).isDown && !this.isPreguntaActive) {
       this.isPreguntaActive = true;
       this.textoTronco.setVisible(false);
-      this.pregunta1 = this.add.image(400, 250, "pregunta2").setScale(0.24);
+      this.pregunta1 = this.add.image(400, 230, "pregunta2").setScale(0.22);
     }
 
     if (this.isPreguntaActive && this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.B).isDown) {
