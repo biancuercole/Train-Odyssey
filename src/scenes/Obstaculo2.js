@@ -65,7 +65,7 @@ export default class Obstaculo2 extends Phaser.Scene {
 
   update() {
     //OPCION 1
-    if (this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ONE).isDown && this.contadorMonedas >= 400 && !this.teclaUno) {
+    if (this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ONE).isDown && this.contadorMonedas >= 500 && !this.teclaUno) {
       this.teclaUno = true;
       this.correcto.play();
       this.correcto.setLoop(false);
@@ -78,7 +78,7 @@ export default class Obstaculo2 extends Phaser.Scene {
         contadorVidas: this.contadorVidas,
         })
       }, 2000);
-    } else if (this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ONE).isDown && this.contadorMonedas <= 400 && !this.teclaUno) {
+    } else if (this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ONE).isDown && this.contadorMonedas <= 500 && !this.teclaUno) {
       this.teclaUno = true;
       this.incorrecto.play();
       this.textoTronco.setVisible(false);
