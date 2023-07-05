@@ -42,7 +42,7 @@ export default class Parte1 extends Phaser.Scene {
     //obstaculo
     this.obstaculoUno = this.physics.add.group({allowGravity: false});
     this.time.addEvent ({
-      delay: 40000, 
+      delay: 30000, 
       callback: this.obstaculoPrimero, 
       callbackScope: this, 
       loop: false,
