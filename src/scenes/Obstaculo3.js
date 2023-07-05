@@ -30,14 +30,14 @@ export default class Obstaculo3 extends Phaser.Scene {
       this.add.image(1300, 300, "vidas");
       this.add.image(1605, 300, "distancia");
       this.textoTronco = this.add.image(400, 230, "textoCaja").setScale(0.20);
-      this.add.image(980, 300, "obstaculo2");
+      this.add.image(670, 475, "obstaculo3");
   
       // Pinza
       this.pinza = this.physics.add.sprite(432, 420, "pinza");
       this.pinza.body.allowGravity = false;
   
       // Agregar sprite de tren y sacar gravedad
-      this.tren = this.physics.add.sprite(950, 300, 'trenSheet');
+      this.tren = this.physics.add.sprite(280, 300, 'trenSheet');
       this.tren.body.allowGravity = false;
   
       this.cursors = this.input.keyboard.createCursorKeys();
@@ -69,8 +69,8 @@ export default class Obstaculo3 extends Phaser.Scene {
     }
   
     update() {
-      if (this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ONE).isDown && this.contadorMonedas >= 400) {
-        this.contadorMonedas -= 200;
+      if (this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ONE).isDown && this.contadorMonedas >= 500) {
+        this.contadorMonedas -= 500;
         this.correcto.play();
         this.correcto.setLoop(false);
         this.textoMoneda.setText(this.contadorMonedas);
@@ -79,7 +79,7 @@ export default class Obstaculo3 extends Phaser.Scene {
           contadorKm: this.contadorKm,
           contadorVidas: this.contadorVidas,
         });
-      } else if (this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ONE).isDown && this.contadorMonedas <= 600 && !this.teclaUno && this.contadorVidas > 1) {
+      } else if (this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ONE).isDown && this.contadorMonedas <= 500 && !this.teclaUno && this.contadorVidas > 1) {
         this.teclaUno = true;
         this.textoTronco.setVisible(false);
         this.incorrecto.play();
@@ -93,7 +93,7 @@ export default class Obstaculo3 extends Phaser.Scene {
           contadorVidas: this.contadorVidas,
           })
         }, 2000);
-      } else if (this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ONE).isDown && this.contadorMonedas <= 200 && !this.teclaUno && this.contadorVidas == 1) {
+      } else if (this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ONE).isDown && this.contadorMonedas <= 500 && !this.teclaUno && this.contadorVidas == 1) {
         this.teclaUno = true;
         this.textoTronco.setVisible(false);
         this.incorrecto.play();
@@ -118,7 +118,7 @@ export default class Obstaculo3 extends Phaser.Scene {
       if (this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.TWO).isDown && !this.isPreguntaActive) {
         this.isPreguntaActive = true;
         this.textoTronco.setVisible(false);
-        this.pregunta1 = this.add.image(400, 230, "pregunta3").setScale(0.24);
+        this.pregunta1 = this.add.image(400, 230, "pregunta3").setScale(0.22);
       }
   
       if (this.isPreguntaActive && this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A).isDown) {
