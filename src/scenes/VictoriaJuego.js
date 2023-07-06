@@ -4,9 +4,12 @@ export default class VictoriaJuego extends Phaser.Scene {
     }
 
     init(){}
-    create(){
+    create(){      
+      this.sound.stopAll();
+      this.triunfo = this.sound.add("victoriaCancion");
+      this.triunfo.play();
       console.log("victoria")
-      
+      const click = this.sound.add('click');
       this.pantallaVictoria = this.physics.add.sprite(400, 300, 'trenQuietoSheet');
       this.pantallaVictoria.body.allowGravity = false;
       this.add.image(400, 190, "victoria").setScale(0.30);
@@ -20,7 +23,8 @@ export default class VictoriaJuego extends Phaser.Scene {
       });
       reintentar.on("pointerdown", () => {
         this.game.canvas.style.cursor = "default";
-        this.scene.start("menu");
+        click.play();
+        this.scene.start("precargas");
       });
       
       this.time.addEvent ({
@@ -29,6 +33,7 @@ export default class VictoriaJuego extends Phaser.Scene {
         callbackScope: this,
         loop: true,
       })
+
     }
     upload(){}
     spriteVictoria() {
