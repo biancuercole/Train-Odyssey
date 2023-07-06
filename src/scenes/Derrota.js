@@ -5,6 +5,10 @@ export default class Derrota extends Phaser.Scene {
 
   init(){}
   create(){
+    this.sound.stopAll();
+    this.derrota = this.sound.add("gameOver");
+    this.derrota.play();
+    const click = this.sound.add('click');
     console.log("derrota")
     
     this.pantallaDerrota = this.physics.add.sprite(400, 300, 'trenQuietoSheet');
@@ -20,6 +24,7 @@ export default class Derrota extends Phaser.Scene {
     });
     reintentard.on("pointerdown", () => {
       this.game.canvas.style.cursor = "default";
+      click.play();
       this.scene.start("menu");
     });
     
