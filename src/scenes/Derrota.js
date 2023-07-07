@@ -25,7 +25,7 @@ export default class Derrota extends Phaser.Scene {
     reintentard.on("pointerdown", () => {
       this.game.canvas.style.cursor = "default";
       click.play();
-      this.scene.start("menu");
+      this.scene.start("precargas");
     });
     
     this.time.addEvent ({
