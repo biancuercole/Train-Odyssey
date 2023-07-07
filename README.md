@@ -11,11 +11,6 @@ Instrucciones:
 - Para elegir una opcion para solucionar los problemas: tocar la tecla 1 o 2 del teclado numérico según corresponda. 
 - Para elegir una respuesta a la pregunta: tocar la tecla "a" o "b" del teclado según corresponda. 
 
-Mejoras propuestas a futuro: 
-- Agregar un sistema de carbón, el cual el jugador deberá cargar cada cierto tiempo apre-tando la tecla “c” para que el tren no se apague y se pierda el juego. 
-- Agregar objetos que aparezcan de manera similar a la moneda pero sean destructivos, y que si se los recolecta se pierda una vida. 
-- Agregar un nivel nocturno en el cual se deba utilizar una linterna para ver ciertos objetos recolectables. 
-
 Si querés jugar a "Train Odyssey" lo podés hacer a través de este link: https://biancuercole.github.io/Train-Odyssey/
 
 En el siguiente link se encuentra el PDF de mi TDD: https://drive.google.com/file/d/1wIjZkkYnE6idyNEd1rT3pTrYVFaMk_fg/view?usp=sharing
